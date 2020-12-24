@@ -2,10 +2,14 @@
     <div id="formContent">
       <h2 class="active"> Produtiva </h2>
   
-      <form>
-        <input type="text" id="email" class="fadeIn second" name="email" placeholder="Digite seu e-mail">
-        <input type="password" id="senha" class="fadeIn third" name="senha" placeholder="Digite sua senha">
-        <input type="submit" class="fadeIn fourth" value="Login">
+      <form [formGroup]="loginForm">
+        <input type="text" formControlName="email" id="email" class="fadeIn second" name="email" placeholder="Digite seu e-mail">
+        <input type="password" formControlName="senha" id="senha" class="fadeIn third" name="senha" placeholder="Digite sua senha">
+
+        <button (click)="login()" class="fadeIn fourth" id="submit">
+            Login
+        </button>
+
       </form>
 
     </div>

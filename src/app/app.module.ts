@@ -11,6 +11,8 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './components/security/auth.guard';
 import { SharedService } from './services/shared.service';
+import { SpinnerService } from './services/spinner.service';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   imports: [
@@ -21,6 +23,7 @@ import { SharedService } from './services/shared.service';
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
+    OverlayModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     })
@@ -32,7 +35,8 @@ import { SharedService } from './services/shared.service';
   ],
   providers: [
     AuthGuard,
-    SharedService
+    SharedService,
+    SpinnerService
   ],
   bootstrap: [AppComponent]
 })
