@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { AgmCoreModule } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './components/security/auth.guard';
+import { SharedService } from './services/shared.service';
 
 @NgModule({
   imports: [
@@ -26,10 +28,12 @@ import { LoginComponent } from './login/login.component';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    LoginComponent,
-
+    LoginComponent
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    SharedService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
