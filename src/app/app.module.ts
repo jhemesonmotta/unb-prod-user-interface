@@ -13,6 +13,8 @@ import { AuthGuard } from './components/security/auth.guard';
 import { SharedService } from './services/shared.service';
 import { SpinnerService } from './services/spinner.service';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { UserService } from './services/usuario/usuario.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   imports: [
@@ -24,6 +26,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     RouterModule,
     AppRoutingModule,
     OverlayModule,
+    MatSnackBarModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     })
@@ -36,7 +39,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
   providers: [
     AuthGuard,
     SharedService,
-    SpinnerService
+    SpinnerService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
