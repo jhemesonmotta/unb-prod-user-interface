@@ -10,7 +10,7 @@ export class AlocacaoService {
 
   constructor(private http: HttpClient) {}
 
-  getAlocacaoByPessoaID(usuario: UsuarioLogado):Observable<Array<Alocacao>> {
-    return this.http.get(`${BACKEND_API}/alocacao/pessoa/${usuario.id}`) as Observable<Array<Alocacao>>;
+  getAlocacaoByUsuarioLogado(usuario: UsuarioLogado):Observable<Array<Alocacao>> {
+    return this.http.get(`${BACKEND_API}/alocacao/pessoa/${usuario.pessoa.id}`) as Observable<Array<Alocacao>>;
   }
 }

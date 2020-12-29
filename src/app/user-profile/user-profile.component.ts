@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'app/services/shared.service';
 import { UsuarioLogado } from 'app/model/usuarioLogado';
+import { AlocacaoService } from 'app/services/alocacao/alocacao.service';
+import { SpinnerService } from 'app/services/spinner.service';
+import { SnackBarService } from 'app/services/snackbar/snack-bar.service';
+import { Alocacao } from 'app/model/alocacao';
 
 @Component({
   selector: 'app-user-profile',
@@ -9,15 +13,32 @@ import { UsuarioLogado } from 'app/model/usuarioLogado';
 })
 export class UserProfileComponent implements OnInit {
   usuarioLogado: UsuarioLogado;
+  alocacoes: Array<Alocacao> = [];
 
-  constructor(private sharedService: SharedService) { }
+  constructor(private sharedService: SharedService,
+    private alocacaoService: AlocacaoService,
+    private spinner: SpinnerService,
+    private snackBarService: SnackBarService) { }
 
   ngOnInit() {
     if (this.sharedService.isLoggedIn()) {
       this.usuarioLogado = this.sharedService.getCurrentLogin();
-      console.log('this.usuarioLogado');
-      console.log(this.usuarioLogado);
+      this.carregarAlocacoes();
     }
+  }
+
+  private carregarAlocacoes() {
+    this.alocacaoService.getAlocacaoByUsuarioLogado(this.usuarioLogado).subscribe((data) => {
+      console.log('data');
+      console.log(data);
+      this.alocacoes = data;
+    }, (error) => {
+      console.log('Error: ');
+      console.log(error);
+
+      this.spinner.stopSpinner();
+      this.snackBarService.erro('Erro ao carregar as alocações deste usuário! Tente novamente em alguns instantes.');
+    });
   }
 
 }

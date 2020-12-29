@@ -15,6 +15,7 @@ import { SpinnerService } from './services/spinner.service';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { UserService } from './services/usuario/usuario.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AlocacaoService } from './services/alocacao/alocacao.service';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     AuthGuard,
     SharedService,
     SpinnerService,
-    UserService
+    UserService,
+    AlocacaoService
   ],
   bootstrap: [AppComponent]
 })
