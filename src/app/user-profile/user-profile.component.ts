@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from 'app/services/shared.service';
+import { UsuarioLogado } from 'app/model/usuarioLogado';
 
 @Component({
   selector: 'app-user-profile',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
+  usuarioLogado: UsuarioLogado;
 
-  constructor() { }
+  constructor(private sharedService: SharedService) { }
 
   ngOnInit() {
+    if (this.sharedService.isLoggedIn()) {
+      this.usuarioLogado = this.sharedService.getCurrentLogin();
+      console.log('this.usuarioLogado');
+      console.log(this.usuarioLogado);
+    }
   }
 
 }
