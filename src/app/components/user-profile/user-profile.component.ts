@@ -27,6 +27,10 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+  definirRotaAdicionarAlocacao() {
+    return '/user-profile/add-alocation/' + this.usuarioLogado.pessoa.id;
+  }
+
   private carregarAlocacoes() {
     this.alocacaoService.getAlocacaoByUsuarioLogado(this.usuarioLogado).subscribe((data) => {
       console.log('data');
