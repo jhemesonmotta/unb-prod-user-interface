@@ -8,7 +8,6 @@ import { EmpresaService } from 'app/services/empresa/empresa.service';
 import { SharedService } from 'app/services/shared.service';
 import { SnackBarService } from 'app/services/snackbar/snack-bar.service';
 import { SpinnerService } from 'app/services/spinner.service';
-import { data } from 'jquery';
 
 @Component({
   selector: 'app-add-alocacao',
