@@ -16,6 +16,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { UserService } from './services/usuario/usuario.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AlocacaoService } from './services/alocacao/alocacao.service';
+import { EmpresaService } from './services/empresa/empresa.service';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import { AlocacaoService } from './services/alocacao/alocacao.service';
     SharedService,
     SpinnerService,
     UserService,
-    AlocacaoService
+    AlocacaoService,
+    EmpresaService
   ],
   bootstrap: [AppComponent]
 })

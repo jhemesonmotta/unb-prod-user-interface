@@ -31,8 +31,8 @@
                                     <mat-form-field class="example-full-width">
                                         <mat-label>Escolha a Empresa</mat-label>
                                         <mat-select formControlName="empresa">
-                                          <mat-option *ngFor="let food of foods" [value]="food.value">
-                                            {{food.viewValue}}
+                                          <mat-option *ngFor="let empresa of empresas" [value]="empresa.id">
+                                            {{empresa.nome}}
                                           </mat-option>
                                         </mat-select>
                                       </mat-form-field>
@@ -42,8 +42,8 @@
                                     <mat-form-field class="example-full-width">
                                         <mat-label>Escolha o Cargo</mat-label>
                                         <mat-select formControlName="cargo">
-                                          <mat-option *ngFor="let food of foods" [value]="food.value">
-                                            {{food.viewValue}}
+                                          <mat-option *ngFor="let cargo of cargos" [value]="cargo">
+                                            {{cargo}}
                                           </mat-option>
                                         </mat-select>
                                       </mat-form-field>
