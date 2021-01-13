@@ -5,7 +5,7 @@ import { UserProfileComponent } from '../../components/user-profile/user-profile
 import { TableListComponent } from '../../table-list/table-list.component';
 import { NotificationsComponent } from '../../notifications/notifications.component';
 import { AddAlocacaoComponent } from 'app/components/alocacao/add-alocacao/add-alocacao.component';
-import { ListarEmpresasComponent } from 'app/listar-empresas/listar-empresas.component';
+import { ListarEmpresasComponent } from 'app/components/empresa/listar-empresas/listar-empresas.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',                        component: DashboardComponent },

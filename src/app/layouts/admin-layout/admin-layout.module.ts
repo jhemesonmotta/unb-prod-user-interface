@@ -14,7 +14,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import { AddAlocacaoComponent } from 'app/components/alocacao/add-alocacao/add-alocacao.component';
-import { ListarEmpresasComponent } from 'app/listar-empresas/listar-empresas.component';
+import { ListarEmpresasComponent } from 'app/components/empresa/listar-empresas/listar-empresas.component';
 
 @NgModule({
   imports: [
