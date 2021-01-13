@@ -1,1 +1,77 @@
-<p>add-alocacao works!</p>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="perfil-container">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Perfil de Usuário</h4>
+                        <p class="card-category">{{usuarioLogado.pessoa.nome}}</p>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput value="{{usuarioLogado.email}}" disabled>
+                                    </mat-form-field>
+                                </div>
+  
+                                <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput value="{{usuarioLogado.pessoa.nome}}" disabled>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+
+                        <form [formGroup]="form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Escolha a Empresa</mat-label>
+                                        <mat-select formControlName="empresa">
+                                          <mat-option *ngFor="let food of foods" [value]="food.value">
+                                            {{food.viewValue}}
+                                          </mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
+                                </div>
+  
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Escolha o Cargo</mat-label>
+                                        <mat-select formControlName="cargo">
+                                          <mat-option *ngFor="let food of foods" [value]="food.value">
+                                            {{food.viewValue}}
+                                          </mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput type="date" placeholder="Digite a Data de Início" formControlName="dataInicio">
+                                    </mat-form-field>
+                                </div>
+  
+                                <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput type="date" placeholder="Digite a Data do Fim" formControlName="dataFim">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+
+                            <button (click)="submit()" mat-raised-button type="submit" class="btn btn-success btn-round">
+                                Enviar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
