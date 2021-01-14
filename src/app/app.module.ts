@@ -36,7 +36,7 @@ import { EmpresaService } from './services/empresa/empresa.service';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    LoginComponent,
+    LoginComponent
   ],
   providers: [
     AuthGuard,

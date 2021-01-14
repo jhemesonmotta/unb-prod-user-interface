@@ -14,6 +14,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { AddAlocacaoComponent } from 'app/components/alocacao/add-alocacao/add-alocacao.component';
 import { ListarEmpresasComponent } from 'app/components/empresa/listar-empresas/listar-empresas.component';
 import { ListarUsuariosComponent } from '../../components/usuarios/listar-usuarios/listar-usuarios.component';
+import { CriarEmpresaComponent } from 'app/components/empresa/criar-empresa/criar-empresa.component';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { ListarUsuariosComponent } from '../../components/usuarios/listar-usuari
     UserProfileComponent,
     AddAlocacaoComponent,
     ListarEmpresasComponent,
-    ListarUsuariosComponent
+    ListarUsuariosComponent,
+    CriarEmpresaComponent
   ]
 })
 
