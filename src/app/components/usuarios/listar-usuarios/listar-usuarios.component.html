@@ -1,0 +1,57 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Usuários</h4>
+                        <p class="card-category"> Listagem de todos os usuários cadastrados no sistema</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        Id
+                                    </th>
+                                    <th>
+                                        Nome
+                                    </th>
+                                    <th>
+                                        E-Mail
+                                    </th>
+                                    <th>
+                                        Gênero
+                                    </th>
+                                    <th>
+                                        Nascimento
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let usuario of usuarios">
+                                        <td>
+                                            {{usuario.id}}
+                                        </td>
+                                        <td>
+                                            {{usuario.pessoa.nome}}
+                                        </td>
+                                        <td>
+                                            {{usuario.email}}
+                                        </td>
+                                        <td>
+                                            {{usuario.pessoa.genero}}
+                                        </td>
+                                        <td>
+                                            {{usuario.pessoa.dataNascimento}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  

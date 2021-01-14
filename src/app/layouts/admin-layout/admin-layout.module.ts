@@ -15,6 +15,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import { AddAlocacaoComponent } from 'app/components/alocacao/add-alocacao/add-alocacao.component';
 import { ListarEmpresasComponent } from 'app/components/empresa/listar-empresas/listar-empresas.component';
+import { ListarUsuariosComponent } from '../../components/usuarios/listar-usuarios/listar-usuarios.component';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { ListarEmpresasComponent } from 'app/components/empresa/listar-empresas/
     TableListComponent,
     NotificationsComponent,
     AddAlocacaoComponent,
-    ListarEmpresasComponent
+    ListarEmpresasComponent,
+    ListarUsuariosComponent
   ]
 })
 

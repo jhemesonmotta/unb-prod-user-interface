@@ -13,4 +13,8 @@ export class UserService {
   login(usuario: RequestLogin):Observable<UsuarioLogado> {
     return this.http.post(`${BACKEND_API}usuario/login`, usuario) as Observable<UsuarioLogado>;
   }
+
+  listar():Observable<Array<UsuarioLogado>> {
+    return this.http.get(`${BACKEND_API}usuario`) as Observable<Array<UsuarioLogado>>;
+  }
 }
