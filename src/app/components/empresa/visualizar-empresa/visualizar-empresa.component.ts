@@ -6,6 +6,7 @@ import { SnackBarService } from 'app/services/snackbar/snack-bar.service';
 import { Alocacao } from 'app/model/alocacao';
 import { Empresa } from 'app/model/empresa';
 import { EmpresaService } from 'app/services/empresa/empresa.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-visualizar-empresa',
@@ -17,16 +18,21 @@ export class VisualizarEmpresaComponent implements OnInit {
   empresaSelecionada: Empresa;
   alocacoes: Array<Alocacao> = [];
 
-  constructor(private sharedService: SharedService,
+  constructor(private route: ActivatedRoute,
+    private sharedService: SharedService,
     private alocacaoService: AlocacaoService,
     private empresaService: EmpresaService,
     private spinner: SpinnerService,
     private snackBarService: SnackBarService) { }
 
   ngOnInit() {
-    if (this.sharedService.isLoggedIn()) {
-      this.buscarEmpresa(1);
-    }
+    this.route.params.subscribe(
+      (parametros) => {
+        if(parametros.id != null) {
+          this.buscarEmpresa(parametros.id);
+        }
+      }
+    );
   }
 
   definirRotaAdicionarAlocacao() {
