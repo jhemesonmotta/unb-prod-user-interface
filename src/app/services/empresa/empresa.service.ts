@@ -11,6 +11,10 @@ export class EmpresaService {
 
   constructor(private http: HttpClient) {}
 
+  buscarPorId(id: number):Observable<Empresa> {
+    return this.http.get(`${BACKEND_API}empresa/${id}`) as Observable<Empresa>;
+  }
+
   listar():Observable<Array<Empresa>> {
     return this.http.get(`${BACKEND_API}empresa`) as Observable<Array<Empresa>>;
   }
