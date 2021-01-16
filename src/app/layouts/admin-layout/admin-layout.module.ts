@@ -16,6 +16,7 @@ import { ListarEmpresasComponent } from 'app/components/empresa/listar-empresas/
 import { ListarUsuariosComponent } from '../../components/usuarios/listar-usuarios/listar-usuarios.component';
 import { CriarEmpresaComponent } from 'app/components/empresa/criar-empresa/criar-empresa.component';
 import { CriarUsuarioComponent } from 'app/components/usuarios/criar-usuario/criar-usuario.component';
+import { VisualizarEmpresaComponent } from '../../components/empresa/visualizar-empresa/visualizar-empresa.component';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { CriarUsuarioComponent } from 'app/components/usuarios/criar-usuario/cri
     ListarEmpresasComponent,
     ListarUsuariosComponent,
     CriarEmpresaComponent,
-    CriarUsuarioComponent
+    CriarUsuarioComponent,
+    VisualizarEmpresaComponent
   ]
 })
 

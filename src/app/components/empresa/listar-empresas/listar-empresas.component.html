@@ -20,6 +20,9 @@
                                     <th>
                                         Data de Cadastro
                                     </th>
+                                    <th>
+                                        Ações
+                                    </th>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let empresa of empresas">
@@ -31,6 +34,11 @@
                                         </td>
                                         <td>
                                             {{empresa.dataCadastro}}
+                                        </td>
+                                        <td>
+                                            <a [routerLink]="['/company/'+empresa.id]" mat-raised-button type="button" matTooltip="Visualizar Empresa" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                                <i class="material-icons">preview</i>
+                                            </a>
                                         </td>
                                     </tr>
                                 </tbody>

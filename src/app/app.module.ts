@@ -37,7 +37,7 @@ import { PessoaService } from './services/pessoa/pessoa.service';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    LoginComponent
+    LoginComponent,
   ],
   providers: [
     AuthGuard,
