@@ -37,7 +37,7 @@ export class AddAlocacaoEmpresaComponent implements OnInit {
   empresas: Array<Empresa> = [];
 
   form = this.fb.group({
-    usuario: new FormControl(null, [Validators.required]),
+    usuario: new FormControl(null),
     cargo: new FormControl(null, [Validators.required]),
     dataInicio: new FormControl(null, [Validators.required]),
     dataFim: new FormControl(null)
@@ -92,8 +92,12 @@ export class AddAlocacaoEmpresaComponent implements OnInit {
 
     private _filter(value: string): UsuarioLogado[] {
       const filterValue = value.toLowerCase();
-  
       return this.usuarios.filter(usuario => usuario.email.toLowerCase().includes(filterValue));
+    }
+
+    private filtrarUsuarioPorEmail(email: string): UsuarioLogado {
+      const filterValue = email.toLowerCase();
+      return this.usuarios.filter(usuario => usuario.email.toLowerCase().includes(filterValue))[0];
     }
 
     private carregarUsuarios() {
@@ -114,37 +118,37 @@ export class AddAlocacaoEmpresaComponent implements OnInit {
     }
 
     submit() {
-      console.log(this.myControl.value);
+      let usuarioSelecionado: UsuarioLogado = this.filtrarUsuarioPorEmail(this.myControl.value);
 
-      // if (this.form.valid) {
-      //   this.spinner.showSpinner();
+      if (this.form.valid) {
+        this.spinner.showSpinner();
       
-      //   const formData = this.form.getRawValue();
-      //   console.log(formData);
+        const formData = this.form.getRawValue();
+        console.log(formData);
   
-      //   let request: RequestCriarAlocacao = {
-      //     pessoaId: this.usuarioLogado.pessoa.id,
-      //     empresaId: formData.empresa,
-      //     cargo: formData.cargo,
-      //     dataFim: formData.dataFim,
-      //     dataInicio: formData.dataInicio
-      //   }
+        let request: RequestCriarAlocacao = {
+          pessoaId: usuarioSelecionado.pessoa.id,
+          empresaId: this.empresaSelecionada.id,
+          cargo: formData.cargo,
+          dataFim: formData.dataFim,
+          dataInicio: formData.dataInicio
+        }
   
-      //   this.alocacaoService.criar(request).subscribe(
-      //     (data) => {
-      //       this.snackBarService.sucesso(data.message);
-      //       window.location.href = '/#/user-profile';
-      //     }, (error) => {
-      //       console.log('Error: ');
-      //       console.log(error);
+        this.alocacaoService.criar(request).subscribe(
+          (data) => {
+            this.snackBarService.sucesso(data.message);
+            window.location.href = `/#/company/${this.empresaSelecionada.id}`;
+          }, (error) => {
+            console.log('Error: ');
+            console.log(error);
   
-      //       this.spinner.stopSpinner();
-      //       this.snackBarService.erro('Erro ao criar Alocação.');
-      //     }
-      //   );
+            this.spinner.stopSpinner();
+            this.snackBarService.erro('Erro ao criar Alocação.');
+          }
+        );
   
-      //   this.spinner.stopSpinner();
-      // }
+        this.spinner.stopSpinner();
+      }
     }
 
 }

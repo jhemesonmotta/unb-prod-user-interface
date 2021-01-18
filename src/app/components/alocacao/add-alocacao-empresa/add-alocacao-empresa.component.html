@@ -25,15 +25,6 @@
                                           </mat-option>
                                         </mat-autocomplete>
                                     </mat-form-field>
-
-                                    <mat-form-field class="example-full-width">
-                                      <mat-label>Escolha a Empresa</mat-label>
-                                      <mat-select formControlName="empresa">
-                                        <mat-option *ngFor="let empresa of empresas" [value]="empresa.id">
-                                          {{empresa.nome}}
-                                        </mat-option>
-                                      </mat-select>
-                                    </mat-form-field>
                                 </div>
   
                                 <div class="col-md-6">
