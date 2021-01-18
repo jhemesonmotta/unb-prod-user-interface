@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedService } from 'app/services/shared.service';
 import { AlocacaoService } from 'app/services/alocacao/alocacao.service';
 import { SpinnerService } from 'app/services/spinner.service';
 import { SnackBarService } from 'app/services/snackbar/snack-bar.service';
@@ -19,7 +18,6 @@ export class VisualizarEmpresaComponent implements OnInit {
   alocacoes: Array<Alocacao> = [];
 
   constructor(private route: ActivatedRoute,
-    private sharedService: SharedService,
     private alocacaoService: AlocacaoService,
     private empresaService: EmpresaService,
     private spinner: SpinnerService,

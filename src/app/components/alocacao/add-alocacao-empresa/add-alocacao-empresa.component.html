@@ -1,1 +1,75 @@
-<p>add-alocacao-empresa works!</p>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="perfil-container">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Adicionar Alocação Para Empresa</h4>
+                        <p class="card-category">{{empresaSelecionada.nome}}</p>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Usuário</mat-label>
+                                        <input type="text"
+                                               placeholder="Digite para filtrar..."
+                                               aria-label="usuario"
+                                               matInput
+                                               [formControl]="myControl"
+                                               [matAutocomplete]="auto">
+                                        <mat-autocomplete #auto="matAutocomplete">
+                                          <mat-option *ngFor="let usuario of filteredOptions | async" [value]="usuario.email">
+                                            {{usuario.email}}
+                                          </mat-option>
+                                        </mat-autocomplete>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="example-full-width">
+                                      <mat-label>Escolha a Empresa</mat-label>
+                                      <mat-select formControlName="empresa">
+                                        <mat-option *ngFor="let empresa of empresas" [value]="empresa.id">
+                                          {{empresa.nome}}
+                                        </mat-option>
+                                      </mat-select>
+                                    </mat-form-field>
+                                </div>
+  
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Escolha o Cargo</mat-label>
+                                        <mat-select formControlName="cargo">
+                                          <mat-option *ngFor="let cargo of cargos" [value]="cargo">
+                                            {{cargo}}
+                                          </mat-option>
+                                        </mat-select>
+                                      </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput type="date" placeholder="Digite a Data de Início" formControlName="dataInicio">
+                                    </mat-form-field>
+                                </div>
+  
+                                <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput type="date" placeholder="Digite a Data do Fim" formControlName="dataFim">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+
+                            <button (click)="submit()" mat-raised-button type="submit" class="btn btn-success btn-round">
+                                Enviar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  

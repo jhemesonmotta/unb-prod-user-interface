@@ -18,6 +18,7 @@ import { CriarEmpresaComponent } from 'app/components/empresa/criar-empresa/cria
 import { CriarUsuarioComponent } from 'app/components/usuarios/criar-usuario/criar-usuario.component';
 import { VisualizarEmpresaComponent } from '../../components/empresa/visualizar-empresa/visualizar-empresa.component';
 import { AddAlocacaoEmpresaComponent } from 'app/components/alocacao/add-alocacao-empresa/add-alocacao-empresa.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { AddAlocacaoEmpresaComponent } from 'app/components/alocacao/add-alocaca
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    MatAutocompleteModule
   ],
   declarations: [
     DashboardComponent,

@@ -20,10 +20,10 @@ export class ListarUsuariosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.carregarEmpresas();
+    this.carregarUsuarios();
   }
 
-  private carregarEmpresas() {
+  private carregarUsuarios() {
     this.spinner.showSpinner();
 
     this.usuarioService.listar().subscribe(
