@@ -8,6 +8,7 @@ import { ListarUsuariosComponent } from 'app/components/usuarios/listar-usuarios
 import { CriarEmpresaComponent } from 'app/components/empresa/criar-empresa/criar-empresa.component';
 import { CriarUsuarioComponent } from 'app/components/usuarios/criar-usuario/criar-usuario.component';
 import { VisualizarEmpresaComponent } from 'app/components/empresa/visualizar-empresa/visualizar-empresa.component';
+import { AddAlocacaoEmpresaComponent } from 'app/components/alocacao/add-alocacao-empresa/add-alocacao-empresa.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',                        component: DashboardComponent },
@@ -15,6 +16,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'companies-list',                   component: ListarEmpresasComponent },
     { path: 'companies-create',                 component: CriarEmpresaComponent },
     { path: 'company/:id',                      component: VisualizarEmpresaComponent },
+    { path: 'company/:id/add-alocation',        component: AddAlocacaoEmpresaComponent },
     { path: 'users-list',                       component: ListarUsuariosComponent },
     { path: 'users-create',                     component: CriarUsuarioComponent },
     { path: 'user-profile/add-alocation/:id',   component: AddAlocacaoComponent },

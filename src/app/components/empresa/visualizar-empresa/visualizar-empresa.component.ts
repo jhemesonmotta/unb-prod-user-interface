@@ -36,7 +36,7 @@ export class VisualizarEmpresaComponent implements OnInit {
   }
 
   definirRotaAdicionarAlocacao() {
-    return '/user-profile/add-alocation/';
+    return `/company/${this.empresaSelecionada.id}/add-alocation/`;
   }
 
   private carregarAlocacoes() {

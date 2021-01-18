@@ -17,6 +17,7 @@ import { ListarUsuariosComponent } from '../../components/usuarios/listar-usuari
 import { CriarEmpresaComponent } from 'app/components/empresa/criar-empresa/criar-empresa.component';
 import { CriarUsuarioComponent } from 'app/components/usuarios/criar-usuario/criar-usuario.component';
 import { VisualizarEmpresaComponent } from '../../components/empresa/visualizar-empresa/visualizar-empresa.component';
+import { AddAlocacaoEmpresaComponent } from 'app/components/alocacao/add-alocacao-empresa/add-alocacao-empresa.component';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import { VisualizarEmpresaComponent } from '../../components/empresa/visualizar-
     ListarUsuariosComponent,
     CriarEmpresaComponent,
     CriarUsuarioComponent,
-    VisualizarEmpresaComponent
+    VisualizarEmpresaComponent,
+    AddAlocacaoEmpresaComponent
   ]
 })
 
