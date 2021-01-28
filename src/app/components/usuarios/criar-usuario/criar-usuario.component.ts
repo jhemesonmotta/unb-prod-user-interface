@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Empresa } from 'app/model/empresa';
 import { Pessoa } from 'app/model/pessoa';
 import { RequestCriarUsuario } from 'app/model/requestCriarUsuario';
 import { UsuarioLogado } from 'app/model/usuarioLogado';

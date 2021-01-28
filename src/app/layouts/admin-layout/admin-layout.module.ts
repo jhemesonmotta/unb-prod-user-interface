@@ -20,6 +20,7 @@ import { VisualizarEmpresaComponent } from '../../components/empresa/visualizar-
 import { AddAlocacaoEmpresaComponent } from 'app/components/alocacao/add-alocacao-empresa/add-alocacao-empresa.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ListarFatoresComponent } from 'app/components/fatores/listar-fatores/listar-fatores.component';
+import { AddFatorComponent } from 'app/components/fatores/add-fator/add-fator.component';
 
 @NgModule({
   imports: [
@@ -45,7 +46,8 @@ import { ListarFatoresComponent } from 'app/components/fatores/listar-fatores/li
     CriarUsuarioComponent,
     VisualizarEmpresaComponent,
     AddAlocacaoEmpresaComponent,
-    ListarFatoresComponent
+    ListarFatoresComponent,
+    AddFatorComponent
   ]
 })
 

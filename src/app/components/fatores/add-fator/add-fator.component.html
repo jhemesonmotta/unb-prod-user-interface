@@ -1,0 +1,76 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="perfil-container">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Criar Fator</h4>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Nome do Fator" formControlName="nome" required>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Descrição do Fator" formControlName="descricao" required>
+                                      </mat-form-field>
+                                </div>
+                            </div>
+  
+                            <div class="row">
+                              <div class="col-md-6">
+                                <mat-form-field class="example-full-width">
+                                    <input type="number" matInput placeholder="Peso Default"
+                                        min="0.01" max="5" step="0.01" formControlName="pesoDefault" required>
+                                  </mat-form-field>
+                              </div>
+  
+                              <div class="col-md-6">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Escolha a Tipo De Usuário Preenchedor</mat-label>
+                                    <mat-select formControlName="tipoDeUsuarioPreenchendo" required>
+                                        <mat-option *ngFor="let responsabilidade of RESPONSABILIDADES" [value]="responsabilidade">
+                                            {{responsabilidade}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                              </div>
+                            </div>
+  
+                            <div class="row">
+                              <div class="col-md-6">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Escolha a Categoria</mat-label>
+                                    <mat-select formControlName="categoria" required>
+                                        <mat-option *ngFor="let categoria of CATEGORIAS" [value]="categoria">
+                                            {{categoria}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                              </div>
+
+                              <div class="col-md-6">
+                                <mat-form-field class="example-full-width">
+                                  <input matInput placeholder="Texto do Input (se neceessário)" formControlName="textoDoInputTextual">
+                                </mat-form-field>
+                              </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+
+                            <button (click)="submit()" mat-raised-button type="submit" class="btn btn-success btn-round">
+                                Enviar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
