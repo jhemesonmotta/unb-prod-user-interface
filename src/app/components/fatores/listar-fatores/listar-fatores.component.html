@@ -1,1 +1,59 @@
-<p>listar-fatores works!</p>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Fatores</h4>
+                        <p class="card-category"> Listagem de todos os fatores cadastrados no sistema</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        Id
+                                    </th>
+                                    <th>
+                                        Nome
+                                    </th>
+                                    <th>
+                                        Responsável
+                                    </th>
+                                    <th>
+                                        Peso
+                                    </th>
+                                    <th>
+                                        Categoria
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let fator of fatores">
+                                        <td>
+                                            {{fator.id}}
+                                        </td>
+                                        <td>
+                                            {{fator.nome}}
+                                        </td>
+                                        <td>
+                                            {{fator.tipoDeUsuarioPreenchendo}}
+                                        </td>
+                                        <td>
+                                            {{fator.pesoDefault}}
+                                        </td>
+                                        <td>
+                                            {{fator.categoria}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <a [routerLink]="['/users-create']" class="btn btn-round" >Adicionar Usuário</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
