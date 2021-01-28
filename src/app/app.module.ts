@@ -18,6 +18,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AlocacaoService } from './services/alocacao/alocacao.service';
 import { EmpresaService } from './services/empresa/empresa.service';
 import { PessoaService } from './services/pessoa/pessoa.service';
+import { FatorService } from './services/fatores/fator.service';
 
 @NgModule({
   imports: [
@@ -46,7 +47,8 @@ import { PessoaService } from './services/pessoa/pessoa.service';
     UserService,
     AlocacaoService,
     EmpresaService,
-    PessoaService
+    PessoaService,
+    FatorService
   ],
   bootstrap: [AppComponent]
 })

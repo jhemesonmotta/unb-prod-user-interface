@@ -9,6 +9,7 @@ import { CriarEmpresaComponent } from 'app/components/empresa/criar-empresa/cria
 import { CriarUsuarioComponent } from 'app/components/usuarios/criar-usuario/criar-usuario.component';
 import { VisualizarEmpresaComponent } from 'app/components/empresa/visualizar-empresa/visualizar-empresa.component';
 import { AddAlocacaoEmpresaComponent } from 'app/components/alocacao/add-alocacao-empresa/add-alocacao-empresa.component';
+import { ListarFatoresComponent } from 'app/components/fatores/listar-fatores/listar-fatores.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',                        component: DashboardComponent },
@@ -20,4 +21,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'users-list',                       component: ListarUsuariosComponent },
     { path: 'users-create',                     component: CriarUsuarioComponent },
     { path: 'user-profile/add-alocation/:id',   component: AddAlocacaoComponent },
+    { path: 'factors-list',                     component: ListarFatoresComponent },
 ];
+
+
