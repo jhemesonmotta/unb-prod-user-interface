@@ -34,6 +34,10 @@ export class ListarConfiguracoesComponent implements OnInit {
     }
   }
 
+  traduzNomeEmpresa(empresaId: number) {
+    return this.alocacoes.filter(aloc => aloc.empresa.id === empresaId)[0].empresa.nome;
+  }
+
   private carregarConfiguracoes() {
     this.spinner.showSpinner();
 
