@@ -27,6 +27,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'factors-list',                     component: ListarFatoresComponent },
     { path: 'factors-create',                   component: AddFatorComponent },
     { path: 'configs-create',                   component: AddConfiguracaoComponent },
+    { path: 'configs-create/:id',               component: AddConfiguracaoComponent },
     { path: 'configs-list',                     component: ListarConfiguracoesComponent },
 ];
 

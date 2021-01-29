@@ -36,6 +36,17 @@
                                             {{getConfig(alocacao.empresa.id)?.dataCriacao}}
                                         </td>
                                         <td>
+                                            <span *ngIf="getConfig(alocacao.empresa.id)">
+                                                <a [routerLink]="['/configs-create/'+getConfig(alocacao.empresa.id)?.id]" mat-raised-button type="button" matTooltip="Editar" [matTooltipPosition]="'above'">
+                                                    <i class="material-icons">create</i>
+                                                </a>
+                                            </span>
+
+                                            <span *ngIf="!getConfig(alocacao.empresa.id)">
+                                                <a [routerLink]="['/configs-create/']" mat-raised-button type="button" matTooltip="Criar" [matTooltipPosition]="'above'">
+                                                    <i class="material-icons">add_circle</i>
+                                                </a>
+                                            </span>
                                         </td>
                                     </tr>
                                 </tbody>
