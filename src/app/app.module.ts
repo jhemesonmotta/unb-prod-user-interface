@@ -20,6 +20,7 @@ import { EmpresaService } from './services/empresa/empresa.service';
 import { PessoaService } from './services/pessoa/pessoa.service';
 import { FatorService } from './services/fatores/fator.service';
 import { ConfigService } from './services/config/config.service';
+import { MedicaoService } from './services/medicao/medicao.service';
 
 @NgModule({
   imports: [
@@ -50,7 +51,8 @@ import { ConfigService } from './services/config/config.service';
     EmpresaService,
     PessoaService,
     FatorService,
-    ConfigService
+    ConfigService,
+    MedicaoService
   ],
   bootstrap: [AppComponent]
 })

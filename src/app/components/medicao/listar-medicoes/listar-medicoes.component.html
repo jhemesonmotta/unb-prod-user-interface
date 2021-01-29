@@ -1,1 +1,71 @@
-<p>listar-medicoes works!</p>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Medições</h4>
+                        <p class="card-category"> Listagem de todas as medições de empresas relacionadas ao usuário</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        Id
+                                    </th>
+                                    <th>
+                                        Usuário
+                                    </th>
+                                    <th>
+                                        Empresa
+                                    </th>
+                                    <th>
+                                        Criação
+                                    </th>
+                                    <th>
+                                        Fechamento
+                                    </th>
+                                    <th>
+                                        Ações
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let medicao of medicoes">
+                                        <td>
+                                            {{medicao.id}}
+                                        </td>
+                                        <td>
+                                            {{traduzirUsuario(medicao?.criadorId)}}
+                                        </td>
+                                        <td>
+                                            {{traduzirEmpresa(medicao?.empresaId)}}
+                                        </td>
+                                        <td>
+                                            {{medicao.dataCriacao}}
+                                        </td>
+                                        <td>
+                                            {{medicao.dataFechamento}}
+                                        </td>
+                                        <td>
+                                            <a [routerLink]="['/']" mat-raised-button type="button" matTooltip="Editar" [matTooltipPosition]="'above'">
+                                                <i class="material-icons">create</i>
+                                            </a>
+                                            
+                                            <a [routerLink]="['/measurement/'+medicao.id]" mat-raised-button type="button" matTooltip="Visualizar" [matTooltipPosition]="'above'">
+                                                <i class="material-icons">preview</i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <a [routerLink]="['/measurement-create']" class="btn btn-round" >Adicionar Medição</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
