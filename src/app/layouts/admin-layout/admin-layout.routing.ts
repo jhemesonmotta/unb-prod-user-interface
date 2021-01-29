@@ -14,6 +14,9 @@ import { AddFatorComponent } from 'app/components/fatores/add-fator/add-fator.co
 import { AddConfiguracaoComponent } from 'app/components/configuracao/add-configuracao/add-configuracao.component';
 import { ListarConfiguracoesComponent } from 'app/components/configuracao/listar-configuracoes/listar-configuracoes.component';
 import { EditConfiguracaoComponent } from 'app/components/configuracao/edit-configuracao/edit-configuracao.component';
+import { ListarMedicoesComponent } from 'app/components/medicao/listar-medicoes/listar-medicoes.component';
+import { VerMedicaoComponent } from 'app/components/medicao/ver-medicao/ver-medicao.component';
+import { CriarMedicaoComponent } from 'app/components/medicao/criar-medicao/criar-medicao.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',                            component: DashboardComponent },
@@ -30,6 +33,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'config/company/:id',                   component: AddConfiguracaoComponent },
     { path: 'config/:idConfig/company/:idCompany',  component: EditConfiguracaoComponent },
     { path: 'configs-list',                         component: ListarConfiguracoesComponent },
+    { path: 'measurement-list',                     component: ListarMedicoesComponent },
+    { path: 'measurement/:id',                      component: VerMedicaoComponent },
+    { path: 'measurement-create',                   component: CriarMedicaoComponent },
 ];
-
-
