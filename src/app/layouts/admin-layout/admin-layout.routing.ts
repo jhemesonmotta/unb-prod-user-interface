@@ -13,6 +13,7 @@ import { ListarFatoresComponent } from 'app/components/fatores/listar-fatores/li
 import { AddFatorComponent } from 'app/components/fatores/add-fator/add-fator.component';
 import { AddConfiguracaoComponent } from 'app/components/configuracao/add-configuracao/add-configuracao.component';
 import { ListarConfiguracoesComponent } from 'app/components/configuracao/listar-configuracoes/listar-configuracoes.component';
+import { EditConfiguracaoComponent } from 'app/components/configuracao/edit-configuracao/edit-configuracao.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',                            component: DashboardComponent },
@@ -27,7 +28,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'factors-list',                         component: ListarFatoresComponent },
     { path: 'factors-create',                       component: AddFatorComponent },
     { path: 'config/company/:id',                   component: AddConfiguracaoComponent },
-    { path: 'config/:idConfig/company/:idCompany',  component: AddConfiguracaoComponent },
+    { path: 'config/:idConfig/company/:idCompany',  component: EditConfiguracaoComponent },
     { path: 'configs-list',                         component: ListarConfiguracoesComponent },
 ];
 

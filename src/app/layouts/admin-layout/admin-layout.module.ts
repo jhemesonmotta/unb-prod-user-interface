@@ -23,6 +23,7 @@ import { ListarFatoresComponent } from 'app/components/fatores/listar-fatores/li
 import { AddFatorComponent } from 'app/components/fatores/add-fator/add-fator.component';
 import { AddConfiguracaoComponent } from 'app/components/configuracao/add-configuracao/add-configuracao.component';
 import { ListarConfiguracoesComponent } from 'app/components/configuracao/listar-configuracoes/listar-configuracoes.component';
+import { EditConfiguracaoComponent } from 'app/components/configuracao/edit-configuracao/edit-configuracao.component';
 
 @NgModule({
   imports: [
@@ -51,7 +52,8 @@ import { ListarConfiguracoesComponent } from 'app/components/configuracao/listar
     ListarFatoresComponent,
     AddFatorComponent,
     AddConfiguracaoComponent,
-    ListarConfiguracoesComponent
+    ListarConfiguracoesComponent,
+    EditConfiguracaoComponent
   ]
 })
 
