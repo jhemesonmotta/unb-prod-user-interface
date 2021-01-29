@@ -15,20 +15,20 @@ import { AddConfiguracaoComponent } from 'app/components/configuracao/add-config
 import { ListarConfiguracoesComponent } from 'app/components/configuracao/listar-configuracoes/listar-configuracoes.component';
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'dashboard',                        component: DashboardComponent },
-    { path: 'user-profile',                     component: UserProfileComponent },
-    { path: 'companies-list',                   component: ListarEmpresasComponent },
-    { path: 'companies-create',                 component: CriarEmpresaComponent },
-    { path: 'company/:id',                      component: VisualizarEmpresaComponent },
-    { path: 'company/:id/add-alocation',        component: AddAlocacaoEmpresaComponent },
-    { path: 'users-list',                       component: ListarUsuariosComponent },
-    { path: 'users-create',                     component: CriarUsuarioComponent },
-    { path: 'user-profile/add-alocation/:id',   component: AddAlocacaoComponent },
-    { path: 'factors-list',                     component: ListarFatoresComponent },
-    { path: 'factors-create',                   component: AddFatorComponent },
-    { path: 'configs-create',                   component: AddConfiguracaoComponent },
-    { path: 'configs-create/:id',               component: AddConfiguracaoComponent },
-    { path: 'configs-list',                     component: ListarConfiguracoesComponent },
+    { path: 'dashboard',                            component: DashboardComponent },
+    { path: 'user-profile',                         component: UserProfileComponent },
+    { path: 'companies-list',                       component: ListarEmpresasComponent },
+    { path: 'companies-create',                     component: CriarEmpresaComponent },
+    { path: 'company/:id',                          component: VisualizarEmpresaComponent },
+    { path: 'company/:id/add-alocation',            component: AddAlocacaoEmpresaComponent },
+    { path: 'users-list',                           component: ListarUsuariosComponent },
+    { path: 'users-create',                         component: CriarUsuarioComponent },
+    { path: 'user-profile/add-alocation/:id',       component: AddAlocacaoComponent },
+    { path: 'factors-list',                         component: ListarFatoresComponent },
+    { path: 'factors-create',                       component: AddFatorComponent },
+    { path: 'config/company/:id',                   component: AddConfiguracaoComponent },
+    { path: 'config/:idConfig/company/:idCompany',  component: AddConfiguracaoComponent },
+    { path: 'configs-list',                         component: ListarConfiguracoesComponent },
 ];
 
 
