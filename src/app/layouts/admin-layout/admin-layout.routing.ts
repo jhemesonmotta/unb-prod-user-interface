@@ -11,6 +11,8 @@ import { VisualizarEmpresaComponent } from 'app/components/empresa/visualizar-em
 import { AddAlocacaoEmpresaComponent } from 'app/components/alocacao/add-alocacao-empresa/add-alocacao-empresa.component';
 import { ListarFatoresComponent } from 'app/components/fatores/listar-fatores/listar-fatores.component';
 import { AddFatorComponent } from 'app/components/fatores/add-fator/add-fator.component';
+import { AddConfiguracaoComponent } from 'app/components/configuracao/add-configuracao/add-configuracao.component';
+import { ListarConfiguracoesComponent } from 'app/components/configuracao/listar-configuracoes/listar-configuracoes.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',                        component: DashboardComponent },
@@ -24,6 +26,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'user-profile/add-alocation/:id',   component: AddAlocacaoComponent },
     { path: 'factors-list',                     component: ListarFatoresComponent },
     { path: 'factors-create',                   component: AddFatorComponent },
+    { path: 'configs-create',                   component: AddConfiguracaoComponent },
+    { path: 'configs-list',                   component: ListarConfiguracoesComponent },
 ];
 
 

@@ -21,6 +21,8 @@ import { AddAlocacaoEmpresaComponent } from 'app/components/alocacao/add-alocaca
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ListarFatoresComponent } from 'app/components/fatores/listar-fatores/listar-fatores.component';
 import { AddFatorComponent } from 'app/components/fatores/add-fator/add-fator.component';
+import { AddConfiguracaoComponent } from 'app/components/configuracao/add-configuracao/add-configuracao.component';
+import { ListarConfiguracoesComponent } from 'app/components/configuracao/listar-configuracoes/listar-configuracoes.component';
 
 @NgModule({
   imports: [
@@ -47,7 +49,9 @@ import { AddFatorComponent } from 'app/components/fatores/add-fator/add-fator.co
     VisualizarEmpresaComponent,
     AddAlocacaoEmpresaComponent,
     ListarFatoresComponent,
-    AddFatorComponent
+    AddFatorComponent,
+    AddConfiguracaoComponent,
+    ListarConfiguracoesComponent
   ]
 })
 

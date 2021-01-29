@@ -1,0 +1,52 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Configurações</h4>
+                        <p class="card-category"> Listagem das configurações cadastradas para empresas associadas a este usuário</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        Id
+                                    </th>
+                                    <th>
+                                        Empresa
+                                    </th>
+                                    <th>
+                                        Data
+                                    </th>
+                                    <th>
+                                        Ações
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let config of configuracoes">
+                                        <td>
+                                            {{config.id}}
+                                        </td>
+                                        <td>
+                                            {{config.empresaId}}
+                                        </td>
+                                        <td>
+                                            {{config.dataCriacao}}
+                                        </td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <a [routerLink]="['/factors-create']" class="btn btn-round" >Adicionar Fator</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  

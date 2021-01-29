@@ -19,6 +19,7 @@ import { AlocacaoService } from './services/alocacao/alocacao.service';
 import { EmpresaService } from './services/empresa/empresa.service';
 import { PessoaService } from './services/pessoa/pessoa.service';
 import { FatorService } from './services/fatores/fator.service';
+import { ConfigService } from './services/config/config.service';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ import { FatorService } from './services/fatores/fator.service';
     AlocacaoService,
     EmpresaService,
     PessoaService,
-    FatorService
+    FatorService,
+    ConfigService
   ],
   bootstrap: [AppComponent]
 })
