@@ -47,8 +47,6 @@ export class ListarMedicoesComponent implements OnInit {
     this.medicaoService.listar().subscribe(
       (data) => {
         this.medicoes = data;
-        console.log('data');
-        console.log(data);
         this.spinner.stopSpinner();
       }, (error) => {
         console.log('Error: ');
