@@ -34,11 +34,11 @@ export class ListarConfiguracoesComponent implements OnInit {
     }
   }
 
-  traduzNomeEmpresa(empresaId: number) {
-    return this.alocacoes.filter(aloc => aloc.empresa.id === empresaId)[0].empresa.nome;
+  getConfig(empresaId: number): Config{
+    return this.configuracoes.filter(conf => conf.empresaId === empresaId)[0];
   }
 
-  private carregarConfiguracoes() {
+  private carregarConfiguracoes(): void {
     this.spinner.showSpinner();
 
     this.alocacaoService.getAlocacaoByUsuarioLogado(this.usuarioLogado).subscribe((responseAlocacao) => {

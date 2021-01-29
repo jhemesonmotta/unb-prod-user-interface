@@ -13,6 +13,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/companies-list', title: 'Empresas',  icon:'store', class: '' },
     { path: '/users-list', title: 'Usuários',  icon:'supervisor_account', class: '' },
     { path: '/factors-list', title: 'Fatores',  icon:'adjust', class: '' },
+    { path: '/configs-list', title: 'Configurações',  icon:'settings', class: '' },
 ];
 
 @Component({

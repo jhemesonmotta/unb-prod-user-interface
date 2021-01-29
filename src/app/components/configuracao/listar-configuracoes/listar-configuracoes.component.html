@@ -18,30 +18,28 @@
                                         Empresa
                                     </th>
                                     <th>
-                                        Data
+                                        Data Configuração
                                     </th>
                                     <th>
                                         Ações
                                     </th>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let config of configuracoes">
+                                    <tr *ngFor="let alocacao of alocacoes">
                                         <td>
-                                            {{config.id}}
+                                            {{getConfig(alocacao.empresa.id)?.id}}
                                         </td>
                                         <td>
-                                            {{traduzNomeEmpresa(config.empresaId)}}
+                                            {{alocacao.empresa.nome}}
                                         </td>
                                         <td>
-                                            {{config.dataCriacao}}
+                                            {{getConfig(alocacao.empresa.id)?.dataCriacao}}
                                         </td>
                                         <td>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-
-                            <a [routerLink]="['/factors-create']" class="btn btn-round" >Adicionar Fator</a>
                         </div>
                     </div>
                 </div>
