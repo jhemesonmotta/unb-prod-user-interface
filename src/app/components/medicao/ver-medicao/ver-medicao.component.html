@@ -58,23 +58,30 @@
                                     <th>
                                         Data
                                     </th>
+                                    <th>
+                                        Ações
+                                    </th>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let item of pessoas">
                                         <td>
-                                          {{item.id}}
+                                          {{item?.id}}
                                         </td>
                                         <td>
-                                          {{item.usuarioId}}
+                                          {{traduzirUsuario(item?.usuarioId)}}
                                         </td>
                                         <td>
-                                          {{item.data}}
+                                          {{item?.data}}
+                                        </td>
+                                        <td>
+                                            <a [routerLink]="[montaLinkVerMedicaoPessoa(item?.id)]" mat-raised-button type="button" matTooltip="Visualizar" [matTooltipPosition]="'above'">
+                                                <i class="material-icons">preview</i>
+                                            </a>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-    
                     </div>
                 </div>
             </div>

@@ -5,12 +5,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../components/dashboard/dashboard.component';
 import { UserProfileComponent } from '../../components/user-profile/user-profile.component';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatRippleModule} from '@angular/material/core';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatSelectModule} from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatRippleModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
 import { AddAlocacaoComponent } from 'app/components/alocacao/add-alocacao/add-alocacao.component';
 import { ListarEmpresasComponent } from 'app/components/empresa/listar-empresas/listar-empresas.component';
 import { ListarUsuariosComponent } from '../../components/usuarios/listar-usuarios/listar-usuarios.component';
@@ -27,6 +27,8 @@ import { EditConfiguracaoComponent } from 'app/components/configuracao/edit-conf
 import { ListarMedicoesComponent } from 'app/components/medicao/listar-medicoes/listar-medicoes.component';
 import { VerMedicaoComponent } from 'app/components/medicao/ver-medicao/ver-medicao.component';
 import { CriarMedicaoComponent } from 'app/components/medicao/criar-medicao/criar-medicao.component';
+import { VerMedicaoPessoaComponent } from 'app/components/medicao/ver-medicao-pessoa/ver-medicao-pessoa.component';
+import { CriarMedicaoPessoaComponent } from 'app/components/medicao/criar-medicao-pessoa/criar-medicao-pessoa.component';
 
 @NgModule({
   imports: [
@@ -60,6 +62,8 @@ import { CriarMedicaoComponent } from 'app/components/medicao/criar-medicao/cria
     ListarMedicoesComponent,
     VerMedicaoComponent,
     CriarMedicaoComponent,
+    VerMedicaoPessoaComponent,
+    CriarMedicaoPessoaComponent
   ]
 })
 

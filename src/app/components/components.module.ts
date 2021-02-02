@@ -13,7 +13,7 @@ import { SidebarComponent } from './partials/sidebar/sidebar.component';
   declarations: [
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
   ],
   exports: [
     FooterComponent,

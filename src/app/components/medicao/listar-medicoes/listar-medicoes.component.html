@@ -15,9 +15,6 @@
                                         Id
                                     </th>
                                     <th>
-                                        Criador
-                                    </th>
-                                    <th>
                                         Empresa
                                     </th>
                                     <th>
@@ -25,6 +22,9 @@
                                     </th>
                                     <th>
                                         Fechamento
+                                    </th>
+                                    <th>
+                                        Criador
                                     </th>
                                     <th>
                                         Ações
@@ -36,9 +36,6 @@
                                             {{medicao.id}}
                                         </td>
                                         <td>
-                                            {{traduzirUsuario(medicao?.criadorId)}}
-                                        </td>
-                                        <td>
                                             {{traduzirEmpresa(medicao?.empresaId)}}
                                         </td>
                                         <td>
@@ -46,6 +43,9 @@
                                         </td>
                                         <td>
                                             {{medicao.dataFechamento}}
+                                        </td>
+                                        <td>
+                                            {{traduzirUsuario(medicao?.criadorId)}}
                                         </td>
                                         <td>
                                             <a [routerLink]="['/']" mat-raised-button type="button" matTooltip="Editar" [matTooltipPosition]="'above'">

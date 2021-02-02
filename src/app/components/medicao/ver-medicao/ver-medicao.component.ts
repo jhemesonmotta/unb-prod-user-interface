@@ -43,8 +43,12 @@ export class VerMedicaoComponent implements OnInit {
     );
   }
 
+  montaLinkVerMedicaoPessoa(personId: number) {
+    return `/measurement/${this.medicao.id}/person/${personId}`;
+  }
+
   traduzirUsuario(id: number) {
-    return (id != null && id != 0 && this.usuarios.length > 0) ? this.usuarios.filter(usuario => usuario.id === id)[0].pessoa.nome : '';
+    return (id != null && id != 0 && this.usuarios.length > 0) ? this.usuarios.filter(usuario => usuario.id === id)[0].pessoa.nome : id;
   }
 
   traduzirEmpresa(id: number) {
