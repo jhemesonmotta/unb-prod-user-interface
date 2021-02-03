@@ -15,6 +15,10 @@ export class MedicaoService {
     return this.http.get(`${BACKEND_API_PRODUTIVIDADE}medicao/empresa/${id}`) as Observable<Medicao>;
   }
 
+  buscarMedicaoPessoaPorId(id: number):Observable<MedicaoPessoa> {
+    return this.http.get(`${BACKEND_API_PRODUTIVIDADE}medicao/pessoa/${id}`) as Observable<MedicaoPessoa>;
+  }
+
   listar():Observable<Array<Medicao>> {
     return this.http.get(`${BACKEND_API_PRODUTIVIDADE}medicao/empresa`) as Observable<Array<Medicao>>;
   }

@@ -44,11 +44,11 @@ export class VerMedicaoComponent implements OnInit {
   }
 
   montaLinkVerMedicaoPessoa(personId: number) {
-    return `/measurement/${this.medicao.id}/person/${personId}`;
+    return this.medicao? `/measurement/${this.medicao.id}/person/${personId}`: '/';
   }
 
   montaLinkCriarMedicaoPessoa() {
-    return `/measurement/${this.medicao.id}/person-create/`;
+    return this.medicao ? `/measurement/${this.medicao.id}/person-create/`: '/';
   }
 
   traduzirUsuario(id: number) {
