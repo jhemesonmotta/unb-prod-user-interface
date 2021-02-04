@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FooterComponent } from './partials/footer/footer.component';
 import { NavbarComponent } from './partials/navbar/navbar.component';
 import { SidebarComponent } from './partials/sidebar/sidebar.component';
+import { TesteCorsComponent } from './teste-cors/teste-cors.component';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { SidebarComponent } from './partials/sidebar/sidebar.component';
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
+    TesteCorsComponent,
   ],
   exports: [
     FooterComponent,
