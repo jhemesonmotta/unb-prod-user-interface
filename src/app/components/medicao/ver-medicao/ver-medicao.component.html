@@ -74,7 +74,7 @@
                                             {{traduzirUsuario(item?.medicaoPorPessoa?.usuarioId)}}
                                         </td>
                                         <td>
-                                            {{calcularCoeficienteTotal(item)}}
+                                            {{calcularCoeficientePorPessoa(item)}}
                                         </td>
                                         <td>
                                             {{item?.medicaoPorPessoa?.data}}
@@ -84,6 +84,17 @@
                                                 <i class="material-icons">preview</i>
                                             </a>
                                         </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            <b>Total</b>
+                                        </td>
+                                        <td>
+                                            <b>{{calcularCoeficienteTotal()}}</b>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -49,7 +49,17 @@ export class VerMedicaoComponent implements OnInit {
     );
   }
 
-  calcularCoeficienteTotal(medicaoPessoaComFatores: MedicaoPessoaComFatores) {
+  calcularCoeficienteTotal() {
+    let coeficienteTotal: number = 0;
+
+    this.pessoas.forEach(pessoaMedicao => {
+      coeficienteTotal = coeficienteTotal + this.calcularCoeficientePorPessoa(pessoaMedicao);
+    });
+
+    return coeficienteTotal / this.pessoas.length;
+  }
+
+  calcularCoeficientePorPessoa(medicaoPessoaComFatores: MedicaoPessoaComFatores) {
     
     let coeficienteTotal: number = 0;
     medicaoPessoaComFatores.fatoresMedidos.forEach(fatorMedido => {
@@ -57,8 +67,7 @@ export class VerMedicaoComponent implements OnInit {
       coeficienteTotal = coeficienteTotal + (fatorMedido.nota * fatorRelacionado.pesoDefault);
     });
 
-    coeficienteTotal = coeficienteTotal / medicaoPessoaComFatores.fatoresMedidos.length;
-    return coeficienteTotal;
+    return coeficienteTotal / medicaoPessoaComFatores.fatoresMedidos.length;
   }
 
   montaLinkVerMedicaoPessoa(personId: number) {
