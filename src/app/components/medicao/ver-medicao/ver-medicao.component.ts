@@ -9,6 +9,9 @@ import { Empresa } from 'app/model/empresa';
 import { EmpresaService } from 'app/services/empresa/empresa.service';
 import { UserService } from 'app/services/usuario/usuario.service';
 import { MedicaoPessoa } from 'app/model/medicaoPessoa';
+import { MedicaoPessoaComFatores } from 'app/model/medicaoPessoaComFatores';
+import { Fator } from 'app/model/fator';
+import { FatorService } from 'app/services/fatores/fator.service';
 
 @Component({
   selector: 'app-ver-medicao',
@@ -21,13 +24,15 @@ export class VerMedicaoComponent implements OnInit {
   medicao: Medicao;
   usuarios: Array<UsuarioLogado> = [];
   empresas: Array<Empresa> = [];
-  pessoas: Array<MedicaoPessoa> = [];
+  pessoas: Array<MedicaoPessoaComFatores> = [];
+  fatores: Array<Fator> = [];
   
   constructor(private route: ActivatedRoute,
     private medicaoService: MedicaoService,
     private spinner: SpinnerService,
     private usuarioService: UserService,
     private empresaService: EmpresaService,
+    private fatorService: FatorService,
     private snackBarService: SnackBarService) { }
 
   ngOnInit() {
@@ -38,9 +43,22 @@ export class VerMedicaoComponent implements OnInit {
           this.buscarPessoasPorMedicao(parametros.id);
           this.carregarUsuarios();
           this.carregarEmpresas();
+          this.carregarFatores();
         }
       }
     );
+  }
+
+  calcularCoeficienteTotal(medicaoPessoaComFatores: MedicaoPessoaComFatores) {
+    
+    let coeficienteTotal: number = 0;
+    medicaoPessoaComFatores.fatoresMedidos.forEach(fatorMedido => {
+      let fatorRelacionado: Fator = this.traduzirFator(fatorMedido.fatorId);
+      coeficienteTotal = coeficienteTotal + (fatorMedido.nota * fatorRelacionado.pesoDefault);
+    });
+
+    coeficienteTotal = coeficienteTotal / medicaoPessoaComFatores.fatoresMedidos.length;
+    return coeficienteTotal;
   }
 
   montaLinkVerMedicaoPessoa(personId: number) {
@@ -57,6 +75,10 @@ export class VerMedicaoComponent implements OnInit {
 
   traduzirEmpresa(id: number) {
     return (id != null && id != 0 && this.empresas.length > 0) ? this.empresas.filter(empresa => empresa.id === id)[0].nome : '';
+  }
+
+  traduzirFator(id: number) {
+    return (id != null && id != 0 && this.fatores.length > 0) ? this.fatores.filter(fatores => fatores.id === id)[0] : null;
   }
 
   private buscarMedicao(id: number) {
@@ -119,6 +141,23 @@ export class VerMedicaoComponent implements OnInit {
 
         this.spinner.stopSpinner();
         this.snackBarService.erro('Erro ao carregar as empresas.');
+      }
+    );
+  }
+
+  private carregarFatores() {
+    this.spinner.showSpinner();
+
+    this.fatorService.listar().subscribe(
+      (data) => {
+        this.fatores = data;
+        this.spinner.stopSpinner();
+      }, (error) => {
+        console.log('Error: ');
+        console.log(error);
+
+        this.spinner.stopSpinner();
+        this.snackBarService.erro('Erro ao carregar os fatores.');
       }
     );
   }

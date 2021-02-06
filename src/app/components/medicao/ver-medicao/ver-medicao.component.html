@@ -56,6 +56,9 @@
                                         Nome
                                     </th>
                                     <th>
+                                        Valor Geral
+                                    </th>
+                                    <th>
                                         Data
                                     </th>
                                     <th>
@@ -65,16 +68,19 @@
                                 <tbody>
                                     <tr *ngFor="let item of pessoas">
                                         <td>
-                                          {{item?.id}}
+                                            {{item?.medicaoPorPessoa?.id}}
                                         </td>
                                         <td>
-                                          {{traduzirUsuario(item?.usuarioId)}}
+                                            {{traduzirUsuario(item?.medicaoPorPessoa?.usuarioId)}}
                                         </td>
                                         <td>
-                                          {{item?.data}}
+                                            {{calcularCoeficienteTotal(item)}}
                                         </td>
                                         <td>
-                                            <a [routerLink]="[montaLinkVerMedicaoPessoa(item?.id)]" mat-raised-button type="button" matTooltip="Visualizar" [matTooltipPosition]="'above'">
+                                            {{item?.medicaoPorPessoa?.data}}
+                                        </td>
+                                        <td>
+                                            <a [routerLink]="[montaLinkVerMedicaoPessoa(item?.medicaoPorPessoa?.id)]" mat-raised-button type="button" matTooltip="Visualizar" [matTooltipPosition]="'above'">
                                                 <i class="material-icons">preview</i>
                                             </a>
                                         </td>

@@ -5,6 +5,7 @@ import { BACKEND_API_PRODUTIVIDADE } from '../backend.api';
 import { ResponseMessage } from 'app/model/responseMessage';
 import { Medicao } from 'app/model/medicao';
 import { MedicaoPessoa } from 'app/model/medicaoPessoa';
+import { MedicaoPessoaComFatores } from 'app/model/medicaoPessoaComFatores';
 
 @Injectable()
 export class MedicaoService {
@@ -27,7 +28,7 @@ export class MedicaoService {
     return this.http.post(`${BACKEND_API_PRODUTIVIDADE}medicao/empresa`, medicao) as Observable<ResponseMessage>;
   }
 
-  listarPessoasPorMedicao(idEmpresa: number):Observable<Array<MedicaoPessoa>> {
-    return this.http.get(`${BACKEND_API_PRODUTIVIDADE}medicao/pessoa/medicao/${idEmpresa}`) as Observable<Array<MedicaoPessoa>>;
+  listarPessoasPorMedicao(idEmpresa: number):Observable<Array<MedicaoPessoaComFatores>> {
+    return this.http.get(`${BACKEND_API_PRODUTIVIDADE}medicao/pessoa/medicao/${idEmpresa}`) as Observable<Array<MedicaoPessoaComFatores>>;
   }
 }
