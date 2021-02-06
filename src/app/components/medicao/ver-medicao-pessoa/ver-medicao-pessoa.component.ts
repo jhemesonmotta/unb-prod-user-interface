@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Empresa } from 'app/model/empresa';
+import { Fator } from 'app/model/fator';
 import { FatorMedido } from 'app/model/fatorMedido';
 import { Medicao } from 'app/model/medicao';
 import { MedicaoPessoa } from 'app/model/medicaoPessoa';
 import { UsuarioLogado } from 'app/model/usuarioLogado';
 import { EmpresaService } from 'app/services/empresa/empresa.service';
+import { FatorService } from 'app/services/fatores/fator.service';
 import { FatorMedidoService } from 'app/services/medicao/fator.medido.service';
 import { MedicaoService } from 'app/services/medicao/medicao.service';
 import { SnackBarService } from 'app/services/snackbar/snack-bar.service';
@@ -24,6 +26,8 @@ export class VerMedicaoPessoaComponent implements OnInit {
   usuarios: Array<UsuarioLogado> = [];
   empresas: Array<Empresa> = [];
   fatoresMedidos: Array<FatorMedido> = [];
+  fatores: Array<Fator> = [];
+  coeficienteTotal: number = 0;
   
   constructor(
     private route: ActivatedRoute,
@@ -32,7 +36,8 @@ export class VerMedicaoPessoaComponent implements OnInit {
     private snackBarService: SnackBarService,
     private usuarioService: UserService,
     private empresaService: EmpresaService,
-    private fatorMedidoService: FatorMedidoService
+    private fatorMedidoService: FatorMedidoService,
+    private fatorService: FatorService
   ) { }
 
   ngOnInit(): void {
@@ -44,9 +49,23 @@ export class VerMedicaoPessoaComponent implements OnInit {
           this.carregarPorMedicao(parametros.measurementPersonId);
           this.carregarUsuarios();
           this.carregarEmpresas();
+          this.carregarFatores();
         }
       }
     );
+  }
+
+  calcularCoeficienteTotal() {
+    this.coeficienteTotal = 0;
+
+    this.fatoresMedidos.forEach(fatorMedido => {
+      let fatorRelacionado: Fator = this.traduzirFator(fatorMedido.fatorId);
+      this.coeficienteTotal = this.coeficienteTotal + (fatorMedido.nota * fatorRelacionado.pesoDefault);
+    });
+
+    this.coeficienteTotal = this.coeficienteTotal / this.fatoresMedidos.length;
+
+    return this.coeficienteTotal.toFixed(2);
   }
 
   traduzirUsuario(id: number) {
@@ -55,6 +74,10 @@ export class VerMedicaoPessoaComponent implements OnInit {
 
   traduzirEmpresa(id: number) {
     return (id != null && id != 0 && this.empresas.length > 0) ? this.empresas.filter(empresa => empresa.id === id)[0].nome : '';
+  }
+
+  traduzirFator(id: number) {
+    return (id != null && id != 0 && this.fatores.length > 0) ? this.fatores.filter(fatores => fatores.id === id)[0] : null;
   }
 
   private buscarMedicaoPessoa(id: number) {
@@ -139,4 +162,22 @@ export class VerMedicaoPessoaComponent implements OnInit {
       }
     );
   }
+
+  private carregarFatores() {
+    this.spinner.showSpinner();
+
+    this.fatorService.listar().subscribe(
+      (data) => {
+        this.fatores = data;
+        this.spinner.stopSpinner();
+      }, (error) => {
+        console.log('Error: ');
+        console.log(error);
+
+        this.spinner.stopSpinner();
+        this.snackBarService.erro('Erro ao carregar os fatores.');
+      }
+    );
+  }
+
 }

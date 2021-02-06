@@ -34,10 +34,67 @@
                         </form>
                     </div>
                 </div>
+
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Fatores Medidos</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        Fator
+                                    </th>
+                                    <th>
+                                        Categoria
+                                    </th>
+                                    <th>
+                                        Nota
+                                    </th>
+                                    <th>
+                                        Comentários
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of fatoresMedidos">
+                                        <td>
+                                            {{item?.id}}
+                                        </td>
+                                        <td>
+                                            {{traduzirFator(item?.fatorId).nome}}
+                                        </td>
+                                        <td>
+                                            {{traduzirFator(item?.fatorId).categoria}}
+                                        </td>
+                                        <td>
+                                            {{item?.nota}}
+                                        </td>
+                                        <td>
+                                            {{item?.comentarios}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <b>Total</b>
+                                        </td>
+                                        <td>
+                                            <b>{{calcularCoeficienteTotal()}}</b>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
   </div>
   
-
-  TODO: adicionar os fatores que ele mediu e os valores.
