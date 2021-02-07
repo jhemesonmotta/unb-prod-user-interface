@@ -3,6 +3,7 @@ export class Medicao {
     public criadorId: number;
     public empresaId: number;
     public configuracaoMedicaoId: number;
+    public notaFechada: number;
     public dataCriacao: string;
     public dataFechamento: string;
     public status: boolean;

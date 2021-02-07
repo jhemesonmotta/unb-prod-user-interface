@@ -24,6 +24,9 @@
                                         Fechamento
                                     </th>
                                     <th>
+                                        Nota Final
+                                    </th>
+                                    <th>
                                         Criador
                                     </th>
                                     <th>
@@ -45,10 +48,13 @@
                                             {{medicao.dataFechamento}}
                                         </td>
                                         <td>
+                                            {{medicao.notaFechada}}
+                                        </td>
+                                        <td>
                                             {{traduzirUsuario(medicao?.criadorId)}}
                                         </td>
                                         <td>
-                                            <a [routerLink]="['/']" mat-raised-button type="button" matTooltip="Editar" [matTooltipPosition]="'above'">
+                                            <a *ngIf="!medicao.dataFechamento" [routerLink]="['/']" mat-raised-button type="button" matTooltip="Editar" [matTooltipPosition]="'above'">
                                                 <i class="material-icons">create</i>
                                             </a>
                                             
