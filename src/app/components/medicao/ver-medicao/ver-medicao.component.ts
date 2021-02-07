@@ -8,7 +8,6 @@ import { Medicao } from 'app/model/medicao';
 import { Empresa } from 'app/model/empresa';
 import { EmpresaService } from 'app/services/empresa/empresa.service';
 import { UserService } from 'app/services/usuario/usuario.service';
-import { MedicaoPessoa } from 'app/model/medicaoPessoa';
 import { MedicaoPessoaComFatores } from 'app/model/medicaoPessoaComFatores';
 import { Fator } from 'app/model/fator';
 import { FatorService } from 'app/services/fatores/fator.service';
