@@ -28,7 +28,7 @@ import { ListarMedicoesComponent } from 'app/components/medicao/listar-medicoes/
 import { VerMedicaoComponent } from 'app/components/medicao/ver-medicao/ver-medicao.component';
 import { CriarMedicaoComponent } from 'app/components/medicao/criar-medicao/criar-medicao.component';
 import { VerMedicaoPessoaComponent } from 'app/components/medicao/ver-medicao-pessoa/ver-medicao-pessoa.component';
-import { CriarMedicaoPessoaComponent } from 'app/components/medicao/criar-medicao-pessoa/criar-medicao-pessoa.component';
+import { EditarMedicaoPessoaComponent } from 'app/components/medicao/editar-medicao-pessoa/editar-medicao-pessoa.component';
 
 @NgModule({
   imports: [
@@ -63,7 +63,7 @@ import { CriarMedicaoPessoaComponent } from 'app/components/medicao/criar-medica
     VerMedicaoComponent,
     CriarMedicaoComponent,
     VerMedicaoPessoaComponent,
-    CriarMedicaoPessoaComponent
+    EditarMedicaoPessoaComponent
   ]
 })
 

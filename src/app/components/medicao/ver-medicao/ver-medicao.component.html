@@ -80,6 +80,11 @@
                                             {{item?.medicaoPorPessoa?.data}}
                                         </td>
                                         <td>
+                                            <span *ngIf="item?.fatoresMedidos?.length === 0">
+                                                <a [routerLink]="[montaLinkVerMedicaoPessoa(item?.medicaoPorPessoa?.id)+'/edit']" mat-raised-button type="button" matTooltip="Editar" [matTooltipPosition]="'above'">
+                                                    <i class="material-icons">create</i>
+                                                </a>
+                                            </span>
                                             <a [routerLink]="[montaLinkVerMedicaoPessoa(item?.medicaoPorPessoa?.id)]" mat-raised-button type="button" matTooltip="Visualizar" [matTooltipPosition]="'above'">
                                                 <i class="material-icons">preview</i>
                                             </a>

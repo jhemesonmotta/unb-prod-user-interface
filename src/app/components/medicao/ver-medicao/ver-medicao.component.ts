@@ -52,7 +52,6 @@ export class VerMedicaoComponent implements OnInit {
         }
       );
     }
-    
   }
 
   inserirDados() {

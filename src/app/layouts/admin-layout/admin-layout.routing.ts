@@ -18,8 +18,7 @@ import { ListarMedicoesComponent } from 'app/components/medicao/listar-medicoes/
 import { VerMedicaoComponent } from 'app/components/medicao/ver-medicao/ver-medicao.component';
 import { CriarMedicaoComponent } from 'app/components/medicao/criar-medicao/criar-medicao.component';
 import { VerMedicaoPessoaComponent } from 'app/components/medicao/ver-medicao-pessoa/ver-medicao-pessoa.component';
-import { CriarMedicaoPessoaComponent } from 'app/components/medicao/criar-medicao-pessoa/criar-medicao-pessoa.component';
-import { TesteCorsComponent } from 'app/components/teste-cors/teste-cors.component';
+import { EditarMedicaoPessoaComponent } from 'app/components/medicao/editar-medicao-pessoa/editar-medicao-pessoa.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',                                        component: DashboardComponent },
@@ -40,6 +39,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'measurement/:id',                                  component: VerMedicaoComponent },
     { path: 'measurement-create',                               component: CriarMedicaoComponent },
     { path: 'measurement/:id/person/:measurementPersonId',      component: VerMedicaoPessoaComponent },
-    { path: 'measurement/:id/person-create',                    component: CriarMedicaoPessoaComponent },
-    { path: 'teste-cors',                    component: TesteCorsComponent },
+    { path: 'measurement/:id/person/:measurementPersonId/edit', component: EditarMedicaoPessoaComponent }
 ];
