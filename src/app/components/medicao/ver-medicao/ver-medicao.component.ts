@@ -11,6 +11,8 @@ import { UserService } from 'app/services/usuario/usuario.service';
 import { MedicaoPessoaComFatores } from 'app/model/medicaoPessoaComFatores';
 import { Fator } from 'app/model/fator';
 import { FatorService } from 'app/services/fatores/fator.service';
+import { MedicaoPessoa } from 'app/model/medicaoPessoa';
+import { SharedService } from 'app/services/shared.service';
 
 @Component({
   selector: 'app-ver-medicao',
@@ -32,18 +34,45 @@ export class VerMedicaoComponent implements OnInit {
     private usuarioService: UserService,
     private empresaService: EmpresaService,
     private fatorService: FatorService,
+    private sharedService: SharedService,
     private snackBarService: SnackBarService) { }
 
   ngOnInit() {
-    this.route.params.subscribe(
-      (parametros) => {
-        if(parametros.id != null) {
-          this.buscarMedicao(parametros.id);
-          this.buscarPessoasPorMedicao(parametros.id);
-          this.carregarUsuarios();
-          this.carregarEmpresas();
-          this.carregarFatores();
+    if (this.sharedService.isLoggedIn()) {
+      this.route.params.subscribe(
+        (parametros) => {
+          if(parametros.id != null) {
+            this.buscarMedicao(parametros.id);
+            this.buscarPessoasPorMedicao(parametros.id);
+            this.carregarUsuarios();
+            this.carregarEmpresas();
+            this.carregarFatores();
+            this.usuarioLogado = this.sharedService.getCurrentLogin();
+          }
         }
+      );
+    }
+    
+  }
+
+  inserirDados() {
+    let medicaoPessoa: MedicaoPessoa = {
+      id: null,
+      data: new Date().toLocaleDateString(),
+      medicaoEmpresaId: this.medicao.id,
+      usuarioId: this.usuarioLogado.id
+    };
+
+    this.medicaoService.criarMedicaoPessoa(medicaoPessoa).subscribe(
+      (data) => {
+        this.snackBarService.sucesso(data.message);
+        this.buscarPessoasPorMedicao(this.medicao.id);
+        this.spinner.stopSpinner();
+      }, (error) => {
+        console.log('Error: ');
+        console.log(error);
+        this.spinner.stopSpinner();
+        this.snackBarService.erro('Erro ao inserir medição.');
       }
     );
   }
@@ -55,26 +84,25 @@ export class VerMedicaoComponent implements OnInit {
       coeficienteTotal = coeficienteTotal + this.calcularCoeficientePorPessoa(pessoaMedicao);
     });
 
-    return coeficienteTotal / this.pessoas.length;
+    return (coeficienteTotal / this.pessoas.length).toFixed(3);
   }
 
   calcularCoeficientePorPessoa(medicaoPessoaComFatores: MedicaoPessoaComFatores) {
     
     let coeficienteTotal: number = 0;
+
     medicaoPessoaComFatores.fatoresMedidos.forEach(fatorMedido => {
       let fatorRelacionado: Fator = this.traduzirFator(fatorMedido.fatorId);
-      coeficienteTotal = coeficienteTotal + (fatorMedido.nota * fatorRelacionado.pesoDefault);
+      if (fatorRelacionado) {
+        coeficienteTotal = coeficienteTotal + (fatorMedido.nota * fatorRelacionado.pesoDefault);
+      }
     });
 
-    return coeficienteTotal / medicaoPessoaComFatores.fatoresMedidos.length;
+    return medicaoPessoaComFatores.fatoresMedidos.length > 0 ? coeficienteTotal / medicaoPessoaComFatores.fatoresMedidos.length : 0;
   }
 
   montaLinkVerMedicaoPessoa(personId: number) {
     return this.medicao? `/measurement/${this.medicao.id}/person/${personId}`: '/';
-  }
-
-  montaLinkCriarMedicaoPessoa() {
-    return this.medicao ? `/measurement/${this.medicao.id}/person-create/`: '/';
   }
 
   traduzirUsuario(id: number) {

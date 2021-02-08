@@ -54,10 +54,6 @@
                                             {{traduzirUsuario(medicao?.criadorId)}}
                                         </td>
                                         <td>
-                                            <a *ngIf="!medicao.dataFechamento" [routerLink]="['/']" mat-raised-button type="button" matTooltip="Editar" [matTooltipPosition]="'above'">
-                                                <i class="material-icons">create</i>
-                                            </a>
-                                            
                                             <a [routerLink]="['/measurement/'+medicao.id]" mat-raised-button type="button" matTooltip="Visualizar" [matTooltipPosition]="'above'">
                                                 <i class="material-icons">preview</i>
                                             </a>

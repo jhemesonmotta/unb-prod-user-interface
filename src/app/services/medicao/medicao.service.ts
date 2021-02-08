@@ -28,6 +28,10 @@ export class MedicaoService {
     return this.http.post(`${BACKEND_API_PRODUTIVIDADE}medicao/empresa`, medicao) as Observable<ResponseMessage>;
   }
 
+  criarMedicaoPessoa(medicao: MedicaoPessoa): Observable<ResponseMessage> {
+    return this.http.post(`${BACKEND_API_PRODUTIVIDADE}medicao/pessoa`, medicao) as Observable<ResponseMessage>;
+  }
+
   listarPessoasPorMedicao(idEmpresa: number):Observable<Array<MedicaoPessoaComFatores>> {
     return this.http.get(`${BACKEND_API_PRODUTIVIDADE}medicao/pessoa/medicao/${idEmpresa}`) as Observable<Array<MedicaoPessoaComFatores>>;
   }

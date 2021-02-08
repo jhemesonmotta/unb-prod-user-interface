@@ -138,6 +138,7 @@ export class AddAlocacaoEmpresaComponent implements OnInit {
           (data) => {
             this.snackBarService.sucesso(data.message);
             window.location.href = `/#/company/${this.empresaSelecionada.id}`;
+            this.spinner.stopSpinner();
           }, (error) => {
             console.log('Error: ');
             console.log(error);

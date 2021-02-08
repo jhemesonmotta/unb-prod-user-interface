@@ -74,7 +74,7 @@
                                             {{traduzirUsuario(item?.medicaoPorPessoa?.usuarioId)}}
                                         </td>
                                         <td>
-                                            {{calcularCoeficientePorPessoa(item)}}
+                                            {{calcularCoeficientePorPessoa(item).toFixed(3)}}
                                         </td>
                                         <td>
                                             {{item?.medicaoPorPessoa?.data}}
@@ -99,7 +99,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <a [routerLink]="[montaLinkCriarMedicaoPessoa()]" class="btn btn-round" >Inserir meus dados</a>
+                        <button (click)="inserirDados()" class="btn btn-round" >Inserir meus dados</button>
                     </div>
                 </div>
             </div>

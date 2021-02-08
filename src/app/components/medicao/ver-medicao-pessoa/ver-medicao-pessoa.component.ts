@@ -65,7 +65,7 @@ export class VerMedicaoPessoaComponent implements OnInit {
 
     this.coeficienteTotal = this.coeficienteTotal / this.fatoresMedidos.length;
 
-    return this.coeficienteTotal.toFixed(2);
+    return this.coeficienteTotal.toFixed(3);
   }
 
   traduzirUsuario(id: number) {
