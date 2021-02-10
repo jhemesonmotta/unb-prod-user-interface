@@ -29,6 +29,8 @@ import { VerMedicaoComponent } from 'app/components/medicao/ver-medicao/ver-medi
 import { CriarMedicaoComponent } from 'app/components/medicao/criar-medicao/criar-medicao.component';
 import { VerMedicaoPessoaComponent } from 'app/components/medicao/ver-medicao-pessoa/ver-medicao-pessoa.component';
 import { EditarMedicaoPessoaComponent } from 'app/components/medicao/editar-medicao-pessoa/editar-medicao-pessoa.component';
+import { DynamicFormComponent } from 'app/components/medicao/partials/dynamic-form/dynamic-form.component';
+import { DynamicFormQuestionComponent } from 'app/components/medicao/partials/dynamic-form-question/dynamic-form-question.component';
 
 @NgModule({
   imports: [
@@ -42,7 +44,8 @@ import { EditarMedicaoPessoaComponent } from 'app/components/medicao/editar-medi
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    ReactiveFormsModule
   ],
   declarations: [
     DashboardComponent,
@@ -63,7 +66,9 @@ import { EditarMedicaoPessoaComponent } from 'app/components/medicao/editar-medi
     VerMedicaoComponent,
     CriarMedicaoComponent,
     VerMedicaoPessoaComponent,
-    EditarMedicaoPessoaComponent
+    EditarMedicaoPessoaComponent,
+    DynamicFormComponent,
+    DynamicFormQuestionComponent
   ]
 })
 

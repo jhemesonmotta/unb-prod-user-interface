@@ -1,0 +1,17 @@
+<div>
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+  
+      <div class="row">
+        <div *ngFor="let question of questions" class="col-md-6">
+          <app-dynamic-form-question [question]="question" [form]="form"></app-dynamic-form-question>
+        </div>
+      </div>
+      
+      <div class="row">
+        <button type="submit" [disabled]="!form.valid" mat-raised-button type="submit" class="btn btn-success btn-round">
+          Enviar
+        </button>
+      </div>
+    </form>
+</div>
+  

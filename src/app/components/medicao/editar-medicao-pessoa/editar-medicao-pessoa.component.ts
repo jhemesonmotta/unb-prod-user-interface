@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Empresa } from 'app/model/empresa';
 import { Fator } from 'app/model/fator';
-import { FatorMedido } from 'app/model/fatorMedido';
 import { Medicao } from 'app/model/medicao';
 import { MedicaoPessoa } from 'app/model/medicaoPessoa';
+import { QuestionBase } from 'app/model/questionBase';
 import { UsuarioLogado } from 'app/model/usuarioLogado';
+import { QuestionService } from 'app/services/dynamicForm/questionService';
 import { EmpresaService } from 'app/services/empresa/empresa.service';
 import { FatorService } from 'app/services/fatores/fator.service';
 import { FatorMedidoService } from 'app/services/medicao/fator.medido.service';
@@ -13,15 +14,18 @@ import { MedicaoService } from 'app/services/medicao/medicao.service';
 import { SnackBarService } from 'app/services/snackbar/snack-bar.service';
 import { SpinnerService } from 'app/services/spinner.service';
 import { UserService } from 'app/services/usuario/usuario.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
   selector: 'app-editar-medicao-pessoa',
   templateUrl: './editar-medicao-pessoa.component.html',
-  styleUrls: ['./editar-medicao-pessoa.component.css']
+  styleUrls: ['./editar-medicao-pessoa.component.css'],
+  providers:  [QuestionService]
 })
 export class EditarMedicaoPessoaComponent implements OnInit {
-
+  
+  questions: Observable<QuestionBase<any>[]>;
   medicaoPessoa: MedicaoPessoa;
   medicao: Medicao;
   usuarios: Array<UsuarioLogado> = [];
@@ -37,8 +41,11 @@ export class EditarMedicaoPessoaComponent implements OnInit {
     private usuarioService: UserService,
     private empresaService: EmpresaService,
     private fatorMedidoService: FatorMedidoService,
-    private fatorService: FatorService
-  ) { }
+    private fatorService: FatorService,
+    private questionService: QuestionService
+  ) {
+    this.questions = questionService.getQuestions();
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(
