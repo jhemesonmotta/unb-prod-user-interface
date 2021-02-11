@@ -214,3 +214,6 @@ export class VerMedicaoComponent implements OnInit {
     );
   }
 }
+
+
+// TODO: deixar o botão "Inserir meus dados" ativo somente se eu ainda não tiver inserido nada

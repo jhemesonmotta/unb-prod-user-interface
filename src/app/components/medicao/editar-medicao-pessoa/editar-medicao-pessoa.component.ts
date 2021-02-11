@@ -145,3 +145,7 @@ export class EditarMedicaoPessoaComponent implements OnInit {
   }
 
 }
+
+
+
+// TODO: fazer aparecerem somente campos onde o responsável contém a função do usuário na empresa atual
