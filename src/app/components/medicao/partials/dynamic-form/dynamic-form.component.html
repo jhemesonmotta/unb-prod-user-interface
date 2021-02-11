@@ -8,7 +8,7 @@
       </div>
       
       <div class="row">
-        <button type="submit" [disabled]="!form.valid" mat-raised-button type="submit" class="btn btn-success btn-round">
+        <button (click)="onSubmit()" mat-raised-button type="submit" class="btn btn-success btn-round">
           Enviar
         </button>
       </div>

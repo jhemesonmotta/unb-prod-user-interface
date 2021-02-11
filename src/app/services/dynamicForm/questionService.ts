@@ -28,6 +28,9 @@ export class QuestionService {
 
     ];
 
+    console.log('***** questions *******');
+    console.log(questions);
+
     return of(questions.sort((a, b) => a.order - b.order));
   }
 }
