@@ -1,10 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Fator } from 'app/model/fator';
+import { FatorMedido } from 'app/model/fatorMedido';
+import { MedicaoPessoa } from 'app/model/medicaoPessoa';
 import { QuestionBase } from 'app/model/questionBase';
 import { TextboxQuestion } from 'app/model/textboxQuestion';
 import { QuestionControlService } from 'app/services/dynamicForm/questionControlService';
 import { FatorService } from 'app/services/fatores/fator.service';
+import { FatorMedidoService } from 'app/services/medicao/fator.medido.service';
+import { SnackBarService } from 'app/services/snackbar/snack-bar.service';
+import { SpinnerService } from 'app/services/spinner.service';
 
 @Component({
   selector: 'app-dynamic-form',
@@ -13,13 +18,19 @@ import { FatorService } from 'app/services/fatores/fator.service';
 })
 export class DynamicFormComponent implements OnInit {
 
+  @Input()
+  medicaoPessoa: MedicaoPessoa;
+
   questions: QuestionBase<string>[] = [];
   fatores: Array<Fator> = [];
   form: FormGroup;
 
   constructor(
     private questionControlService: QuestionControlService,
-    private fatorService: FatorService) { }
+    private fatorService: FatorService,
+    private fatorMedidoService: FatorMedidoService,
+    private spinner: SpinnerService,
+    private snackBarService: SnackBarService) { }
 
   ngOnInit() {
     this.form = this.questionControlService.toFormGroup(this.questions);
@@ -27,8 +38,38 @@ export class DynamicFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('this.form.getRawValue()');
-    console.log(this.form.getRawValue());
+    this.spinner.showSpinner();
+
+    this.questions.map(question => question.value = this.form.getRawValue()[question.key]);
+    let fatoresMedidos:Array<FatorMedido> = [];
+    
+    this.questions.forEach(question => {
+      let fatorMedido: FatorMedido = {
+        id: null,
+        comentarios: '',
+        fatorId: Number(question.key.split('-')[1]),
+        nota: Number(question.value),
+        medicaoPorPessoaId: this.medicaoPessoa.id
+      };
+      fatoresMedidos.push(fatorMedido);
+    });
+
+    console.log('fatoresMedidos');
+    console.log(fatoresMedidos);
+
+    this.fatorMedidoService.criarLista({listaFatores: fatoresMedidos}).subscribe(
+      (data) => {
+        this.snackBarService.sucesso(data[0].message);
+        this.spinner.stopSpinner();
+        // window.location.href = '/#/user-profile';
+      }, (error) => {
+        console.log('Error: ');
+        console.log(error);
+
+        this.spinner.stopSpinner();
+        this.snackBarService.erro('Erro ao criar Alocação.');
+      }
+    );
   }
 
   montarQuestoes() {
@@ -41,7 +82,8 @@ export class DynamicFormComponent implements OnInit {
         required: true,
         controlType: fator.descricao,
         order: 1,
-        type: 'number'
+        type: 'number',
+        value: '5'
       });
 
       questoesRetorno.push(novaQuestao);

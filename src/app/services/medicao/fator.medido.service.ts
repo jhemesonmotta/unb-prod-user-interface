@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { BACKEND_API_PRODUTIVIDADE } from '../backend.api';
 import { ResponseMessage } from 'app/model/responseMessage';
 import { FatorMedido } from 'app/model/fatorMedido';
+import { ListaFatores } from 'app/model/listaFatores';
 
 @Injectable()
 export class FatorMedidoService {
@@ -24,6 +25,10 @@ export class FatorMedidoService {
 
   criar(fatorMedido: FatorMedido): Observable<ResponseMessage> {
     return this.http.post(`${BACKEND_API_PRODUTIVIDADE}fator/pessoa`, fatorMedido) as Observable<ResponseMessage>;
+  }
+
+  criarLista(listaFatores: ListaFatores): Observable<Array<ResponseMessage>> {
+    return this.http.post(`${BACKEND_API_PRODUTIVIDADE}fator/pessoa/lista`, listaFatores) as Observable<Array<ResponseMessage>>;
   }
 
 }

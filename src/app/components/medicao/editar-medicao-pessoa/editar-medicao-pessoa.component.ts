@@ -4,27 +4,21 @@ import { Empresa } from 'app/model/empresa';
 import { Fator } from 'app/model/fator';
 import { Medicao } from 'app/model/medicao';
 import { MedicaoPessoa } from 'app/model/medicaoPessoa';
-import { QuestionBase } from 'app/model/questionBase';
-import { TextboxQuestion } from 'app/model/textboxQuestion';
 import { UsuarioLogado } from 'app/model/usuarioLogado';
-import { QuestionService } from 'app/services/dynamicForm/questionService';
 import { EmpresaService } from 'app/services/empresa/empresa.service';
 import { FatorService } from 'app/services/fatores/fator.service';
 import { MedicaoService } from 'app/services/medicao/medicao.service';
 import { SnackBarService } from 'app/services/snackbar/snack-bar.service';
 import { SpinnerService } from 'app/services/spinner.service';
 import { UserService } from 'app/services/usuario/usuario.service';
-import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-editar-medicao-pessoa',
   templateUrl: './editar-medicao-pessoa.component.html',
-  styleUrls: ['./editar-medicao-pessoa.component.css'],
-  providers:  [QuestionService]
+  styleUrls: ['./editar-medicao-pessoa.component.css']
 })
 export class EditarMedicaoPessoaComponent implements OnInit {
 
-  questions: Observable<QuestionBase<any>[]>;
   medicaoPessoa: MedicaoPessoa;
   medicao: Medicao;
   usuarios: Array<UsuarioLogado> = [];
@@ -40,9 +34,7 @@ export class EditarMedicaoPessoaComponent implements OnInit {
     private usuarioService: UserService,
     private empresaService: EmpresaService,
     private fatorService: FatorService,
-    private questionService: QuestionService
   ) {
-    this.questions = questionService.getQuestions();
   }
 
   ngOnInit(): void {
@@ -57,29 +49,6 @@ export class EditarMedicaoPessoaComponent implements OnInit {
         }
       }
     );
-  }
-
-  montarQuestoes() {
-    let questoesRetorno:Array<TextboxQuestion> = [];
-
-    this.fatores.forEach(fator => {
-      let novaQuestao: TextboxQuestion = new TextboxQuestion({
-        key: `campo-${fator.id}`,
-        label: fator.nome,
-        required: true,
-        controlType: 'textbox',
-        order: 1,
-        type: 'text'
-      });
-
-      questoesRetorno.push(novaQuestao);
-    });
-
-    let questoesBase: QuestionBase<string>[] = [
-      ...questoesRetorno
-    ];
-
-    return of(questoesBase);
   }
 
   traduzirUsuario(id: number) {
