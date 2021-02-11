@@ -29,9 +29,6 @@ export class DynamicFormComponent implements OnInit {
   onSubmit() {
     console.log('this.form.getRawValue()');
     console.log(this.form.getRawValue());
-
-    console.log('this.questions');
-    console.log(this.questions);
   }
 
   montarQuestoes() {
@@ -42,9 +39,9 @@ export class DynamicFormComponent implements OnInit {
         key: `campo-${fator.id}`,
         label: fator.nome,
         required: true,
-        controlType: 'textbox',
+        controlType: fator.descricao,
         order: 1,
-        type: 'text'
+        type: 'number'
       });
 
       questoesRetorno.push(novaQuestao);
