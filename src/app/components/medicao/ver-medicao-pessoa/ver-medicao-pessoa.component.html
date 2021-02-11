@@ -47,16 +47,19 @@
                                         ID
                                     </th>
                                     <th>
-                                        Fator
-                                    </th>
-                                    <th>
                                         Categoria
                                     </th>
                                     <th>
-                                        Nota
+                                        Fator
                                     </th>
                                     <th>
-                                        Comentários
+                                        Peso
+                                    </th>
+                                    <th>
+                                        Avaliação
+                                    </th>
+                                    <th>
+                                        Nota Final
                                     </th>
                                 </thead>
                                 <tbody>
@@ -65,23 +68,28 @@
                                             {{item?.id}}
                                         </td>
                                         <td>
+                                            {{traduzirFator(item?.fatorId).categoria}}
+                                        </td>
+                                        <td>
                                             {{traduzirFator(item?.fatorId).nome}}
                                         </td>
                                         <td>
-                                            {{traduzirFator(item?.fatorId).categoria}}
+                                            {{traduzirFator(item?.fatorId).pesoDefault}}
                                         </td>
                                         <td>
                                             {{item?.nota.toFixed(3)}}
                                         </td>
                                         <td>
-                                            {{item?.comentarios}}
+                                            {{(item?.nota * traduzirFator(item?.fatorId).pesoDefault).toFixed(3)}}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td></td>
                                         <td></td>
+                                        <td></td>
+                                        <td></td>
                                         <td>
-                                            <b>Total</b>
+                                            <b>Média</b>
                                         </td>
                                         <td>
                                             <b>{{calcularCoeficienteTotal()}}</b>

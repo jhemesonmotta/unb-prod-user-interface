@@ -54,14 +54,11 @@ export class DynamicFormComponent implements OnInit {
       fatoresMedidos.push(fatorMedido);
     });
 
-    console.log('fatoresMedidos');
-    console.log(fatoresMedidos);
-
     this.fatorMedidoService.criarLista({listaFatores: fatoresMedidos}).subscribe(
       (data) => {
         this.snackBarService.sucesso(data[0].message);
         this.spinner.stopSpinner();
-        // window.location.href = '/#/user-profile';
+        window.location.href = `/#/measurement/${this.medicaoPessoa.medicaoEmpresaId}`;
       }, (error) => {
         console.log('Error: ');
         console.log(error);

@@ -54,6 +54,23 @@ export class VerMedicaoComponent implements OnInit {
     }
   }
 
+  fecharMedicao() {
+    this.medicao.dataFechamento = new Date().toLocaleDateString();
+    this.medicao.notaFechada = Number(this.calcularCoeficienteTotal());
+    this.medicaoService.atualizar(this.medicao).subscribe(
+      (data) => {
+        this.snackBarService.sucesso(data.message);
+        this.spinner.stopSpinner();
+        this.buscarMedicao(this.medicao.id);
+      }, (error) => {
+        console.log('Error: ');
+        console.log(error);
+        this.spinner.stopSpinner();
+        this.snackBarService.erro('Erro ao fechar medição.');
+      }
+    );
+  }
+
   inserirDados() {
     let medicaoPessoa: MedicaoPessoa = {
       id: null,
