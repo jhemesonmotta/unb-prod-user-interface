@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { SharedService } from 'app/services/shared.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,10 @@ export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
 
-    constructor(private element: ElementRef, private router: Router) {
+    constructor(
+        private element: ElementRef,
+        private router: Router,
+        private sharedService: SharedService) {
         this.sidebarVisible = false;
     }
 
@@ -26,6 +30,10 @@ export class NavbarComponent implements OnInit {
            this.mobile_menu_visible = 0;
          }
      });
+    }
+
+    logout() {
+        this.sharedService.logOut();
     }
 
     private sidebarOpen() {
