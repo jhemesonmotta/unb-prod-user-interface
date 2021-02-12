@@ -46,10 +46,9 @@ export class VerMedicaoPessoaComponent implements OnInit {
         if(parametros.measurementPersonId != null && parametros.id != null) {
           this.buscarMedicao(parametros.id);
           this.buscarMedicaoPessoa(parametros.measurementPersonId);
-          this.carregarPorMedicao(parametros.measurementPersonId);
           this.carregarUsuarios();
           this.carregarEmpresas();
-          this.carregarFatores();
+          this.carregarFatores(parametros.measurementPersonId);
         }
       }
     );
@@ -60,7 +59,10 @@ export class VerMedicaoPessoaComponent implements OnInit {
 
     this.fatoresMedidos.forEach(fatorMedido => {
       let fatorRelacionado: Fator = this.traduzirFator(fatorMedido.fatorId);
-      this.coeficienteTotal = this.coeficienteTotal + (fatorMedido.nota * fatorRelacionado.pesoDefault);
+
+      if (fatorRelacionado && fatorRelacionado.pesoDefault) {
+        this.coeficienteTotal = this.coeficienteTotal + (fatorMedido.nota * fatorRelacionado.pesoDefault);
+      }
     });
 
     this.coeficienteTotal = this.coeficienteTotal / this.fatoresMedidos.length;
@@ -150,6 +152,11 @@ export class VerMedicaoPessoaComponent implements OnInit {
     this.fatorMedidoService.listarPorMedicao(idMedicao).subscribe(
       (data) => {
         this.fatoresMedidos = data;
+
+        this.fatoresMedidos.sort((a, b) => (this.traduzirFator(a.fatorId).categoria > this.traduzirFator(b.fatorId).categoria)
+            ? 1 : (this.traduzirFator(a.fatorId).categoria === this.traduzirFator(b.fatorId).categoria)
+            ? ((this.traduzirFator(a.fatorId).pesoDefault > this.traduzirFator(b.fatorId).pesoDefault) ? 1 : -1) : -1 );
+
         console.log('this.fatoresMedidos');
         console.log(this.fatoresMedidos);
         this.spinner.stopSpinner();
@@ -163,13 +170,15 @@ export class VerMedicaoPessoaComponent implements OnInit {
     );
   }
 
-  private carregarFatores() {
+  private carregarFatores(measurementPersonId) {
     this.spinner.showSpinner();
 
     this.fatorService.listar().subscribe(
       (data) => {
         this.fatores = data;
         this.spinner.stopSpinner();
+
+        this.carregarPorMedicao(measurementPersonId);
       }, (error) => {
         console.log('Error: ');
         console.log(error);

@@ -68,19 +68,19 @@
                                             {{item?.id}}
                                         </td>
                                         <td>
-                                            {{traduzirFator(item?.fatorId).categoria}}
+                                            {{traduzirFator(item?.fatorId)?.categoria}}
                                         </td>
                                         <td>
-                                            {{traduzirFator(item?.fatorId).nome}}
+                                            {{traduzirFator(item?.fatorId)?.nome}}
                                         </td>
                                         <td>
-                                            {{traduzirFator(item?.fatorId).pesoDefault}}
+                                            {{traduzirFator(item?.fatorId)?.pesoDefault}}
                                         </td>
                                         <td>
                                             {{item?.nota.toFixed(3)}}
                                         </td>
                                         <td>
-                                            {{(item?.nota * traduzirFator(item?.fatorId).pesoDefault).toFixed(3)}}
+                                            {{(item?.nota * traduzirFator(item?.fatorId)?.pesoDefault).toFixed(3)}}
                                         </td>
                                     </tr>
                                     <tr>
