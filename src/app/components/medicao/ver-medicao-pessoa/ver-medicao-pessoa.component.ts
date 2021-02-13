@@ -188,8 +188,4 @@ export class VerMedicaoPessoaComponent implements OnInit {
       }
     );
   }
-
 }
-
-
-// TODO: fazer a listagem de fatores ser ordenaga por categoria

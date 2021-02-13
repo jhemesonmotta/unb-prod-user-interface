@@ -105,7 +105,7 @@
                             </table>
                         </div>
 
-                        <button *ngIf="medicao?.dataFechamento === null" (click)="inserirDados()" class="btn btn-round" >Inserir meus dados</button>
+                        <button *ngIf="podeInserirDados()" (click)="inserirDados()" class="btn btn-round" >Inserir meus dados</button>
                         <button *ngIf="medicao?.dataFechamento === null" (click)="fecharMedicao()" class="btn btn-round btn-red" >Fechar Medição</button>
                     </div>
                 </div>

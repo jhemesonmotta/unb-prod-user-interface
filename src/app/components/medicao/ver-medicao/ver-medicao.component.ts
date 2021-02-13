@@ -54,6 +54,14 @@ export class VerMedicaoComponent implements OnInit {
     }
   }
 
+  podeInserirDados() {
+    let minhasMedicoes: Array<MedicaoPessoaComFatores> = this.pessoas
+        .filter(mdp => mdp.medicaoPorPessoa.usuarioId === this.usuarioLogado.id);
+
+    
+    return this.medicao?.dataFechamento === null && (!minhasMedicoes || minhasMedicoes.length === 0);
+  }
+
   fecharMedicao() {
     this.medicao.dataFechamento = new Date().toLocaleDateString();
     this.medicao.notaFechada = Number(this.calcularCoeficienteTotal());
