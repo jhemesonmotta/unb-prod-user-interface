@@ -13,6 +13,8 @@ import { Fator } from 'app/model/fator';
 import { FatorService } from 'app/services/fatores/fator.service';
 import { MedicaoPessoa } from 'app/model/medicaoPessoa';
 import { SharedService } from 'app/services/shared.service';
+import { AlocacaoService } from 'app/services/alocacao/alocacao.service';
+import { Alocacao } from 'app/model/alocacao';
 
 @Component({
   selector: 'app-ver-medicao',
@@ -27,6 +29,7 @@ export class VerMedicaoComponent implements OnInit {
   empresas: Array<Empresa> = [];
   pessoas: Array<MedicaoPessoaComFatores> = [];
   fatores: Array<Fator> = [];
+  alocacoes: Array<Alocacao> = [];
   
   constructor(private route: ActivatedRoute,
     private medicaoService: MedicaoService,
@@ -35,31 +38,44 @@ export class VerMedicaoComponent implements OnInit {
     private empresaService: EmpresaService,
     private fatorService: FatorService,
     private sharedService: SharedService,
-    private snackBarService: SnackBarService) { }
+    private snackBarService: SnackBarService,
+    private alocacaoService: AlocacaoService) { }
 
   ngOnInit() {
     if (this.sharedService.isLoggedIn()) {
       this.route.params.subscribe(
         (parametros) => {
           if(parametros.id != null) {
+            this.usuarioLogado = this.sharedService.getCurrentLogin();
             this.buscarMedicao(parametros.id);
             this.buscarPessoasPorMedicao(parametros.id);
             this.carregarUsuarios();
             this.carregarEmpresas();
             this.carregarFatores();
-            this.usuarioLogado = this.sharedService.getCurrentLogin();
+            this.carregarAlocacoes();
           }
         }
       );
     }
   }
+  
+  podeFecharMedicao() {
+    let alocacaoDesseUsuario:Alocacao = this.alocacoes.filter(
+      alocacao => alocacao.empresa.id === this.traduzirEmpresa(this.medicao.empresaId).id
+      )[0];
+
+    return this.medicao?.dataFechamento === null &&
+      (alocacaoDesseUsuario.cargo === 'Gerente' || alocacaoDesseUsuario.cargo === 'Diretor');
+  }
 
   podeInserirDados() {
-    let minhasMedicoes: Array<MedicaoPessoaComFatores> = this.pessoas
-        .filter(mdp => mdp.medicaoPorPessoa.usuarioId === this.usuarioLogado.id);
-
-    
-    return this.medicao?.dataFechamento === null && (!minhasMedicoes || minhasMedicoes.length === 0);
+    if (this.usuarioLogado) {
+      let minhasMedicoes: Array<MedicaoPessoaComFatores> = this.pessoas
+      .filter(mdp => mdp.medicaoPorPessoa.usuarioId === this.usuarioLogado.id);
+  
+      return this.medicao?.dataFechamento === null && (!minhasMedicoes || minhasMedicoes.length === 0);
+    }
+    return false;
   }
 
   fecharMedicao() {
@@ -133,8 +149,9 @@ export class VerMedicaoComponent implements OnInit {
     return (id != null && id != 0 && this.usuarios.length > 0) ? this.usuarios.filter(usuario => usuario.id === id)[0].pessoa.nome : id;
   }
 
-  traduzirEmpresa(id: number) {
-    return (id != null && id != 0 && this.empresas.length > 0) ? this.empresas.filter(empresa => empresa.id === id)[0].nome : '';
+  traduzirEmpresa(id: number): Empresa {
+    return (id != null && id != 0 && this.empresas.length > 0) ?
+      this.empresas.filter(empresa => empresa.id === id)[0] : null;
   }
 
   traduzirFator(id: number) {
@@ -221,7 +238,16 @@ export class VerMedicaoComponent implements OnInit {
       }
     );
   }
+
+  private carregarAlocacoes() {
+    this.alocacaoService.getAlocacaoByUsuarioLogado(this.usuarioLogado).subscribe((data) => {
+      this.alocacoes = data;
+    }, (error) => {
+      console.log('Error: ');
+      console.log(error);
+
+      this.spinner.stopSpinner();
+      this.snackBarService.erro('Erro ao carregar as alocações deste usuário! Tente novamente em alguns instantes.');
+    });
+  }
 }
-
-
-// TODO: deixar o botão "Inserir meus dados" ativo somente se eu ainda não tiver inserido nada

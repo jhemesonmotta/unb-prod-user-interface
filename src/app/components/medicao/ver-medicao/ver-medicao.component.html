@@ -17,7 +17,7 @@
   
                                 <div class="col-md-6">
                                   <mat-form-field class="example-full-width">
-                                      <input matInput value="{{traduzirEmpresa(medicao?.empresaId)}}" disabled>
+                                      <input matInput value="{{traduzirEmpresa(medicao?.empresaId)?.nome}}" disabled>
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -106,7 +106,7 @@
                         </div>
 
                         <button *ngIf="podeInserirDados()" (click)="inserirDados()" class="btn btn-round" >Inserir meus dados</button>
-                        <button *ngIf="medicao?.dataFechamento === null" (click)="fecharMedicao()" class="btn btn-round btn-red" >Fechar Medição</button>
+                        <button *ngIf="podeFecharMedicao()" (click)="fecharMedicao()" class="btn btn-round btn-red" >Fechar Medição</button>
                     </div>
                 </div>
             </div>
