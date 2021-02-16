@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Alocacao } from 'app/model/alocacao';
 import { Empresa } from 'app/model/empresa';
 import { Fator } from 'app/model/fator';
 import { Medicao } from 'app/model/medicao';
 import { MedicaoPessoa } from 'app/model/medicaoPessoa';
 import { UsuarioLogado } from 'app/model/usuarioLogado';
+import { AlocacaoService } from 'app/services/alocacao/alocacao.service';
 import { EmpresaService } from 'app/services/empresa/empresa.service';
 import { FatorService } from 'app/services/fatores/fator.service';
 import { MedicaoService } from 'app/services/medicao/medicao.service';
+import { SharedService } from 'app/services/shared.service';
 import { SnackBarService } from 'app/services/snackbar/snack-bar.service';
 import { SpinnerService } from 'app/services/spinner.service';
 import { UserService } from 'app/services/usuario/usuario.service';
@@ -21,10 +24,12 @@ export class EditarMedicaoPessoaComponent implements OnInit {
 
   medicaoPessoa: MedicaoPessoa;
   medicao: Medicao;
+  coeficienteTotal: number = 0;
   usuarios: Array<UsuarioLogado> = [];
   empresas: Array<Empresa> = [];
   fatores: Array<Fator> = [];
-  coeficienteTotal: number = 0;
+  alocacoes: Array<Alocacao> = [];
+  usuarioLogado: UsuarioLogado;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,21 +39,28 @@ export class EditarMedicaoPessoaComponent implements OnInit {
     private usuarioService: UserService,
     private empresaService: EmpresaService,
     private fatorService: FatorService,
+    private alocacaoService: AlocacaoService,
+    private sharedService: SharedService
   ) {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(
-      (parametros) => {
-        if(parametros.measurementPersonId != null && parametros.id != null) {
-          this.buscarMedicao(parametros.id);
-          this.buscarMedicaoPessoa(parametros.measurementPersonId);
-          this.carregarUsuarios();
-          this.carregarEmpresas();
-          this.carregarFatores();
+    if (this.sharedService.isLoggedIn()) {
+      this.usuarioLogado = this.sharedService.getCurrentLogin();
+
+      this.route.params.subscribe(
+        (parametros) => {
+          if(parametros.measurementPersonId != null && parametros.id != null) {
+            this.carregarAlocacoes();
+            this.buscarMedicao(parametros.id);
+            this.buscarMedicaoPessoa(parametros.measurementPersonId);
+            this.carregarUsuarios();
+            this.carregarEmpresas();
+            this.carregarFatores();
+          }
         }
-      }
-    );
+      );
+    }
   }
 
   traduzirUsuario(id: number) {
@@ -144,8 +156,16 @@ export class EditarMedicaoPessoaComponent implements OnInit {
     );
   }
 
+  private carregarAlocacoes() {
+    this.alocacaoService.getAlocacaoByUsuarioLogado(this.usuarioLogado).subscribe((data) => {
+      this.alocacoes = data;
+    }, (error) => {
+      console.log('Error: ');
+      console.log(error);
+
+      this.spinner.stopSpinner();
+      this.snackBarService.erro('Erro ao carregar as alocações deste usuário! Tente novamente em alguns instantes.');
+    });
+  }
+
 }
-
-
-
-// TODO: fazer aparecerem somente campos onde o responsável contém a função do usuário na empresa atual

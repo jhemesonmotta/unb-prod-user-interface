@@ -1,13 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Alocacao } from 'app/model/alocacao';
+import { Empresa } from 'app/model/empresa';
 import { Fator } from 'app/model/fator';
 import { FatorMedido } from 'app/model/fatorMedido';
+import { Medicao } from 'app/model/medicao';
 import { MedicaoPessoa } from 'app/model/medicaoPessoa';
 import { QuestionBase } from 'app/model/questionBase';
 import { TextboxQuestion } from 'app/model/textboxQuestion';
+import { UsuarioLogado } from 'app/model/usuarioLogado';
+import { AlocacaoService } from 'app/services/alocacao/alocacao.service';
 import { QuestionControlService } from 'app/services/dynamicForm/questionControlService';
 import { FatorService } from 'app/services/fatores/fator.service';
 import { FatorMedidoService } from 'app/services/medicao/fator.medido.service';
+import { SharedService } from 'app/services/shared.service';
 import { SnackBarService } from 'app/services/snackbar/snack-bar.service';
 import { SpinnerService } from 'app/services/spinner.service';
 
@@ -20,21 +26,35 @@ export class DynamicFormComponent implements OnInit {
 
   @Input()
   medicaoPessoa: MedicaoPessoa;
+  
+  @Input()
+  empresas: Array<Empresa> = [];
 
+  @Input()
+  medicao: Medicao;
+
+  @Input()
+  alocacoes: Array<Alocacao> = [];
   questions: QuestionBase<string>[] = [];
   fatores: Array<Fator> = [];
   form: FormGroup;
-
+  usuarioLogado: UsuarioLogado;
+  
   constructor(
     private questionControlService: QuestionControlService,
     private fatorService: FatorService,
     private fatorMedidoService: FatorMedidoService,
     private spinner: SpinnerService,
-    private snackBarService: SnackBarService) { }
+    private snackBarService: SnackBarService,
+    private sharedService: SharedService) { }
 
   ngOnInit() {
     this.form = this.questionControlService.toFormGroup(this.questions);
     this.carregarFatores();
+
+    if (this.sharedService.isLoggedIn()) {
+      this.usuarioLogado = this.sharedService.getCurrentLogin();
+    }
   }
 
   onSubmit() {
@@ -70,7 +90,39 @@ export class DynamicFormComponent implements OnInit {
   }
 
   montarQuestoes() {
-    let questoesRetorno:Array<TextboxQuestion> = [];
+    console.log('*********');
+    console.log('*********');
+    console.log('*********');
+    console.log('*********');
+    console.log('*********');
+    console.log('*********');
+    console.log('*********');
+    console.log('*********');
+    console.log('*********');
+    console.log('*********');
+    
+    let alocacaoDesseUsuario: Alocacao = this.alocacoes.filter(
+      alocacao => alocacao.empresa.id === this.traduzirEmpresa(this.medicao.empresaId).id
+      )[0];
+
+    let questoesRetorno: Array<TextboxQuestion> = [];
+
+    this.fatores = this.fatores.filter(fat => {
+      if (fat.tipoDeUsuarioPreenchendo === 'Todos') {
+        return true;
+      } else if (fat.tipoDeUsuarioPreenchendo === 'Desenvolvedores/Testadores') {
+        return alocacaoDesseUsuario != null &&
+            (alocacaoDesseUsuario.cargo === 'Desenvolvedor' || alocacaoDesseUsuario.cargo === 'Testador');
+      } else {
+        // else = Gerência
+        return alocacaoDesseUsuario != null &&
+            (alocacaoDesseUsuario.cargo === 'Diretor' || alocacaoDesseUsuario.cargo === 'Gerente');
+      }
+    });
+
+    console.log('this.fatores');
+    console.log(this.fatores);
+
 
     this.fatores.forEach(fator => {
       let novaQuestao: TextboxQuestion = new TextboxQuestion({
@@ -94,6 +146,11 @@ export class DynamicFormComponent implements OnInit {
     this.form = this.questionControlService.toFormGroup(this.questions);
   }
 
+  traduzirEmpresa(id: number): Empresa {
+    return (id != null && id != 0 && this.empresas.length > 0) ?
+      this.empresas.filter(empresa => empresa.id === id)[0] : null;
+  }
+
   private carregarFatores() {
     this.fatorService.listar().subscribe(
       (data) => {
@@ -107,3 +164,4 @@ export class DynamicFormComponent implements OnInit {
   }
 
 }
+
