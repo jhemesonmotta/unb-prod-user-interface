@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.sharedService.isLoggedIn()) {
-      window.location.href = '/';
+      window.location.href = './#/dashboard';
     }
   }
 
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       let usuarioLogado: UsuarioLogado = data;
 
       this.sharedService.storeLogin(usuarioLogado);
-      window.location.href = '/';
+      window.location.href = './#/dashboard';
 
       this.spinner.stopSpinner();
       this.snackBarService.sucesso('Login efetuado!');

@@ -76,7 +76,7 @@ export class CriarEmpresaComponent implements OnInit {
             this.alocacaoService.criar(requestCriarAlocacao).subscribe(
               (data) => {
                 this.snackBarService.sucesso(data.message);
-                window.location.href = '/#/companies-list';
+                window.location.href = './#/companies-list';
                 this.spinner.stopSpinner();
               }, (error) => {
                 console.log('Error: ');

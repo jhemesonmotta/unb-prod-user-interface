@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuarioLogado } from 'app/model/usuarioLogado';
+import { SharedService } from 'app/services/shared.service';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -13,8 +15,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/user-profile', title: 'Perfil de Usuário',  icon:'person', class: '' },
     { path: '/companies-list', title: 'Empresas',  icon:'store', class: '' },
     { path: '/users-list', title: 'Usuários',  icon:'supervisor_account', class: '' },
-    { path: '/factors-list', title: 'Fatores',  icon:'adjust', class: '' },
-    // { path: '/configs-list', title: 'Configurações',  icon:'settings', class: '' },
+    { path: '/factors-list', title: 'Fatores',  icon:'adjust', class: '' }
 ];
 
 @Component({
@@ -23,11 +24,26 @@ export const ROUTES: RouteInfo[] = [
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  menuItems: any[];
+  usuarioLogado: UsuarioLogado;
+  menuItems: any[] = [];
 
-  constructor() { }
+  constructor(private sharedService: SharedService) { }
 
   ngOnInit() {
-    this.menuItems = ROUTES.filter(menuItem => menuItem);
+    // this.menuItems = ROUTES.filter(menuItem => menuItem);
+
+    if (this.sharedService.isLoggedIn()) {
+      this.usuarioLogado = this.sharedService.getCurrentLogin();
+
+      ROUTES.forEach(route => {
+        if (this.usuarioLogado.email === 'jhemesonmotta@gmail.com') {
+          this.menuItems.push(route);
+        } else {
+          if (route.path === '/dashboard' || route.path === '/measurement-list' || route.path === '/user-profile') {
+            this.menuItems.push(route);
+          }
+        }
+      });
+    }
   }
 }

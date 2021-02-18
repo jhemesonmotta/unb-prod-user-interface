@@ -58,7 +58,7 @@ export class AddConfiguracaoComponent implements OnInit {
 
       this.configService.criar(novaConfig).subscribe((data) => {
         this.snackBarService.sucesso(data.message);
-        window.location.href = '/#/configs-list';
+        window.location.href = './#/configs-list';
       }, (error) => {
         console.log('Error: ');
         console.log(error);

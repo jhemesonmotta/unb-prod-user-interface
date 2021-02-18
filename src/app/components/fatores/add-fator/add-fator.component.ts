@@ -64,7 +64,7 @@ export class AddFatorComponent implements OnInit {
           (data) => {
             this.snackBarService.sucesso(data.message);
             this.spinner.stopSpinner();
-            window.location.href = '/#/factors-list';
+            window.location.href = './#/factors-list';
           }, (error) => {
             console.log('Error: ');
             console.log(error);

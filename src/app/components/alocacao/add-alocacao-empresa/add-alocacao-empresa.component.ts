@@ -137,7 +137,7 @@ export class AddAlocacaoEmpresaComponent implements OnInit {
         this.alocacaoService.criar(request).subscribe(
           (data) => {
             this.snackBarService.sucesso(data.message);
-            window.location.href = `/#/company/${this.empresaSelecionada.id}`;
+            window.location.href = `./#/company/${this.empresaSelecionada.id}`;
             this.spinner.stopSpinner();
           }, (error) => {
             console.log('Error: ');

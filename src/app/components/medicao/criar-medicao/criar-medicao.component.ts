@@ -61,7 +61,7 @@ export class CriarMedicaoComponent implements OnInit {
     this.medicaoService.criar(novaMedicao).subscribe(
       (data) => {
         this.snackBarService.sucesso(data.message);
-        window.location.href = '/#/measurement-list';
+        window.location.href = './#/measurement-list';
       }, (error) => {
         console.log('Error: ');
         console.log(error);

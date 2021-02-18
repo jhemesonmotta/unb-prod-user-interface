@@ -70,7 +70,10 @@ export class AddAlocacaoComponent implements OnInit {
         this.spinner.showSpinner();
       
         const formData = this.form.getRawValue();
-        console.log(formData);
+        console.log('formData');
+        
+        console.log('this.usuarioLogado');
+        console.log(this.usuarioLogado);
   
         let request: RequestCriarAlocacao = {
           pessoaId: this.usuarioLogado.pessoa.id,
@@ -83,7 +86,7 @@ export class AddAlocacaoComponent implements OnInit {
         this.alocacaoService.criar(request).subscribe(
           (data) => {
             this.snackBarService.sucesso(data.message);
-            window.location.href = '/#/user-profile';
+            window.location.href = './#/user-profile';
           }, (error) => {
             console.log('Error: ');
             console.log(error);

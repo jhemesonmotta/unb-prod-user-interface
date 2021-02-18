@@ -78,7 +78,7 @@ export class DynamicFormComponent implements OnInit {
       (data) => {
         this.snackBarService.sucesso(data[0].message);
         this.spinner.stopSpinner();
-        window.location.href = `/#/measurement/${this.medicaoPessoa.medicaoEmpresaId}`;
+        window.location.href = `./#/measurement/${this.medicaoPessoa.medicaoEmpresaId}`;
       }, (error) => {
         console.log('Error: ');
         console.log(error);
@@ -90,17 +90,6 @@ export class DynamicFormComponent implements OnInit {
   }
 
   montarQuestoes() {
-    console.log('*********');
-    console.log('*********');
-    console.log('*********');
-    console.log('*********');
-    console.log('*********');
-    console.log('*********');
-    console.log('*********');
-    console.log('*********');
-    console.log('*********');
-    console.log('*********');
-    
     let alocacaoDesseUsuario: Alocacao = this.alocacoes.filter(
       alocacao => alocacao.empresa.id === this.traduzirEmpresa(this.medicao.empresaId).id
       )[0];
