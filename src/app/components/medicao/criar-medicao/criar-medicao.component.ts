@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Alocacao } from 'app/model/alocacao';
 import { Empresa } from 'app/model/empresa';
 import { Medicao } from 'app/model/medicao';
+import { MedicaoPessoa } from 'app/model/medicaoPessoa';
 import { UsuarioLogado } from 'app/model/usuarioLogado';
 import { AlocacaoService } from 'app/services/alocacao/alocacao.service';
 import { EmpresaService } from 'app/services/empresa/empresa.service';
@@ -60,8 +61,7 @@ export class CriarMedicaoComponent implements OnInit {
 
     this.medicaoService.criar(novaMedicao).subscribe(
       (data) => {
-        this.snackBarService.sucesso(data.message);
-        window.location.href = './#/measurement-list';
+        this.inserirDadosMedicaoPessoa(data.id);
       }, (error) => {
         console.log('Error: ');
         console.log(error);
@@ -70,6 +70,29 @@ export class CriarMedicaoComponent implements OnInit {
       }
     );
 
+  }
+
+  private inserirDadosMedicaoPessoa(medicaoEmpresaId) {
+    let medicaoPessoa: MedicaoPessoa = {
+      id: null,
+      data: new Date().toLocaleDateString(),
+      medicaoEmpresaId: medicaoEmpresaId,
+      usuarioId: this.usuarioLogado.id
+    };
+
+    this.medicaoService.criarMedicaoPessoa(medicaoPessoa).subscribe(
+      (data) => {
+        this.snackBarService.sucesso(data.message);
+        this.spinner.stopSpinner();
+
+        window.location.href = `./#/measurement/${medicaoEmpresaId}/person/${data.id}/edit`;
+      }, (error) => {
+        console.log('Error: ');
+        console.log(error);
+        this.spinner.stopSpinner();
+        this.snackBarService.erro('Erro ao inserir medição.');
+      }
+    );
   }
 
   private carregarEmpresas() {

@@ -62,6 +62,10 @@ export class ListarMedicoesComponent implements OnInit {
                           .filter(medicao => medicao.status &&
                               this.alocacoes.filter(alocacao => alocacao.empresa.id === medicao.empresaId).length > 0);
                               
+        this.medicoes.sort((a, b) => (a.dataCriacao > b.dataCriacao)
+          ? 1 : (a.dataCriacao === b.dataCriacao)
+          ? ((a.empresaId > b.empresaId) ? 1 : -1) : -1 );
+
         this.spinner.stopSpinner();
       }, (error) => {
         console.log('Error: ');
