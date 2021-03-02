@@ -21,4 +21,8 @@ export class FatorService {
   criar(alocacao: Fator): Observable<ResponseMessage> {
     return this.http.post(`${BACKEND_API_PRODUTIVIDADE}fator`, alocacao) as Observable<ResponseMessage>;
   }
+
+  atualizar(alocacao: Fator): Observable<ResponseMessage> {
+    return this.http.put(`${BACKEND_API_PRODUTIVIDADE}fator`, alocacao) as Observable<ResponseMessage>;
+  }
 }

@@ -26,6 +26,12 @@
                                     <th>
                                         Categoria
                                     </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Ações
+                                    </th>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let fator of fatores">
@@ -43,6 +49,14 @@
                                         </td>
                                         <td>
                                             {{fator.categoria}}
+                                        </td>
+                                        <td>
+                                            {{fator.ativo ? 'Ativo': 'Inativo'}}
+                                        </td>
+                                        <td>
+                                            <button (click)="editar(fator)" mat-raised-button type="button" matTooltip="{{fator.ativo ? 'Inativar': 'Ativar'}}" [matTooltipPosition]="'above'">
+                                                <i class="material-icons">create</i>
+                                            </button>
                                         </td>
                                     </tr>
                                 </tbody>

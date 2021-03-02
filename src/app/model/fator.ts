@@ -6,4 +6,5 @@ export class Fator {
     public pesoDefault: number;
     public categoria: string;
     public textoDoInputTextual: string;
+    public ativo: boolean;
 }

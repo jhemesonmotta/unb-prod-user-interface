@@ -9,7 +9,6 @@ import { MedicaoPessoa } from 'app/model/medicaoPessoa';
 import { QuestionBase } from 'app/model/questionBase';
 import { TextboxQuestion } from 'app/model/textboxQuestion';
 import { UsuarioLogado } from 'app/model/usuarioLogado';
-import { AlocacaoService } from 'app/services/alocacao/alocacao.service';
 import { QuestionControlService } from 'app/services/dynamicForm/questionControlService';
 import { FatorService } from 'app/services/fatores/fator.service';
 import { FatorMedidoService } from 'app/services/medicao/fator.medido.service';
@@ -144,6 +143,7 @@ export class DynamicFormComponent implements OnInit {
     this.fatorService.listar().subscribe(
       (data) => {
         this.fatores = data;
+        this.fatores = this.fatores.filter(fator => fator.ativo === true);
         this.montarQuestoes();
       }, (error) => {
         console.log('Error: ');

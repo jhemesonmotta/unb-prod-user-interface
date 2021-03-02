@@ -1,14 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Pessoa } from 'app/model/pessoa';
-import { RequestCriarUsuario } from 'app/model/requestCriarUsuario';
 import { UsuarioLogado } from 'app/model/usuarioLogado';
 import { FatorService } from 'app/services/fatores/fator.service';
-import { PessoaService } from 'app/services/pessoa/pessoa.service';
 import { SharedService } from 'app/services/shared.service';
 import { SnackBarService } from 'app/services/snackbar/snack-bar.service';
 import { SpinnerService } from 'app/services/spinner.service';
-import { UserService } from 'app/services/usuario/usuario.service';
 
 @Component({
   selector: 'app-add-fator',
@@ -39,6 +35,7 @@ export class AddFatorComponent implements OnInit {
     pesoDefault: new FormControl(1),
     categoria: new FormControl(null),
     textoDoInputTextual: new FormControl(null),
+    ativo: new FormControl(false)
   });
   
   constructor (private fb: FormBuilder,

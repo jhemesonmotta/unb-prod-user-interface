@@ -23,6 +23,20 @@ export class ListarFatoresComponent implements OnInit {
     this.carregarFatores();
   }
 
+  editar(fator: Fator) {
+    fator.ativo = !fator.ativo;
+    this.fatorService.atualizar(fator).subscribe((data) => {
+      this.snackBarService.sucesso(data.message);
+      window.location.href = './#/factors-list';
+    }, (error) => {
+      console.log('Error: ');
+      console.log(error);
+
+      this.spinner.stopSpinner();
+      this.snackBarService.erro('Erro ao criar Fator.');
+    });
+  }
+
   private carregarFatores() {
     this.spinner.showSpinner();
 
