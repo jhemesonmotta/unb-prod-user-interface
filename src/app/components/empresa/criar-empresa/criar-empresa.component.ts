@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Empresa } from 'app/model/empresa';
 import { RequestCriarAlocacao } from 'app/model/requestCriarAlocacao';
 import { RequestCriarEmpresa } from 'app/model/requestCriarEmpresa';
@@ -19,6 +20,7 @@ import { SpinnerService } from 'app/services/spinner.service';
 export class CriarEmpresaComponent implements OnInit {
 
   usuarioLogado: UsuarioLogado;
+  empresaSelecionada: Empresa;
 
   cargos: string[] = [
     'Diretor',
@@ -37,7 +39,9 @@ export class CriarEmpresaComponent implements OnInit {
     dataFim: new FormControl(null)
   });
   
-  constructor (private fb: FormBuilder,
+  constructor (
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
     private sharedService: SharedService,
     private spinner: SpinnerService,
     private snackBarService: SnackBarService,
@@ -47,10 +51,17 @@ export class CriarEmpresaComponent implements OnInit {
     ngOnInit() {
       if (this.sharedService.isLoggedIn()) {
         this.usuarioLogado = this.sharedService.getCurrentLogin();
+        this.route.params.subscribe(
+          (parametros) => {
+            if(parametros.id != null) {
+              this.buscarEmpresa(parametros.id);
+            }
+          }
+        );
       }
     }
 
-    submit() {
+    create() {
       if (this.form.valid) {
         this.spinner.showSpinner();
       
@@ -95,6 +106,51 @@ export class CriarEmpresaComponent implements OnInit {
           }
         );
       }
+    }
+
+    update() {
+      if (this.form.valid) {
+        this.spinner.showSpinner();
+      
+        const formData = this.form.getRawValue();
+        console.log(formData);
+
+        this.empresaSelecionada.nome = formData.empresa;
+
+        this.empresaService.atualizar(this.empresaSelecionada).subscribe(
+          (data) => {
+            window.location.href = './#/companies-list';
+            this.snackBarService.sucesso(data.message);
+          }, (error) => {
+            console.log('Error: ');
+            console.log(error);
+  
+            this.spinner.stopSpinner();
+            this.snackBarService.erro('Erro ao Criar Empresa.');
+          }
+        );
+      }
+    }
+
+
+    private buscarEmpresa(id: number) {
+      this.spinner.showSpinner();
+  
+      this.empresaService.buscarPorId(id).subscribe(
+        (data) => {
+          this.empresaSelecionada = data;
+          this.form = this.fb.group({
+            empresa: new FormControl(this.empresaSelecionada.nome, [Validators.required]),
+          });
+          this.spinner.stopSpinner();
+        }, (error) => {
+          console.log('Error: ');
+          console.log(error);
+  
+          this.spinner.stopSpinner();
+          this.snackBarService.erro('Erro ao carregar os dados desta empresa!');
+        }
+      );
     }
 
 }

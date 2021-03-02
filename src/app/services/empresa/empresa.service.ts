@@ -19,7 +19,11 @@ export class EmpresaService {
     return this.http.get(`${BACKEND_API_USUARIOS}empresa`) as Observable<Array<Empresa>>;
   }
 
-  criar(alocacao: RequestCriarEmpresa): Observable<ResponseMessage> {
-    return this.http.post(`${BACKEND_API_USUARIOS}empresa`, alocacao) as Observable<ResponseMessage>;
+  criar(empresa: RequestCriarEmpresa): Observable<ResponseMessage> {
+    return this.http.post(`${BACKEND_API_USUARIOS}empresa`, empresa) as Observable<ResponseMessage>;
+  }
+
+  atualizar(empresa: Empresa): Observable<ResponseMessage> {
+    return this.http.put(`${BACKEND_API_USUARIOS}empresa`, empresa) as Observable<ResponseMessage>;
   }
 }

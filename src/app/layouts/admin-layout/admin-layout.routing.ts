@@ -25,6 +25,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'user-profile',                                     component: UserProfileComponent },
     { path: 'companies-list',                                   component: ListarEmpresasComponent },
     { path: 'companies-create',                                 component: CriarEmpresaComponent },
+    { path: 'company/edit/:id',                                 component: CriarEmpresaComponent },
     { path: 'company/:id',                                      component: VisualizarEmpresaComponent },
     { path: 'company/:id/add-alocation',                        component: AddAlocacaoEmpresaComponent },
     { path: 'users-list',                                       component: ListarUsuariosComponent },

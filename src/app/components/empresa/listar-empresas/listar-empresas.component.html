@@ -36,7 +36,10 @@
                                             {{empresa.dataCadastro}}
                                         </td>
                                         <td>
-                                            <a [routerLink]="['/company/'+empresa.id]" mat-raised-button type="button" matTooltip="Visualizar Empresa" [matTooltipPosition]="'above'" class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                            <a [routerLink]="['/company/edit/'+empresa.id]" mat-raised-button type="button" matTooltip="Editar" [matTooltipPosition]="'above'">
+                                                <i class="material-icons">create</i>
+                                            </a>
+                                            <a [routerLink]="['/company/'+empresa.id]" mat-raised-button type="button" matTooltip="Visualizar" [matTooltipPosition]="'above'">
                                                 <i class="material-icons">preview</i>
                                             </a>
                                         </td>

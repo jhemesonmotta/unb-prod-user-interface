@@ -25,7 +25,7 @@
                             <div class="clearfix"></div>
                         </form>
 
-                        <form [formGroup]="form">
+                        <form [formGroup]="form" *ngIf="empresaSelecionada == null">
                             <div class="row">
                                 <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
@@ -59,8 +59,29 @@
                             </div>
                             <div class="clearfix"></div>
 
-                            <button (click)="submit()" mat-raised-button type="submit" class="btn btn-success btn-round">
-                                Enviar
+                            <button (click)="create()" mat-raised-button type="submit" class="btn btn-success btn-round">
+                                Criar
+                            </button>
+                        </form>
+
+
+                        <form [formGroup]="form" *ngIf="empresaSelecionada != null">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput type="text" placeholder="Digite o Nome da Nova Empresa" formControlName="empresa">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput value="{{empresaSelecionada.dataCadastro}}" disabled>
+                                      </mat-form-field>
+                                  </div>
+                            </div>
+                            <div class="clearfix"></div>
+
+                            <button (click)="update()" mat-raised-button type="submit" class="btn btn-success btn-round">
+                                Atualizar
                             </button>
                         </form>
                     </div>
