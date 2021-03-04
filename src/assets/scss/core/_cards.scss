@@ -175,7 +175,7 @@
     &.bg-info,
     &.card-rotate.bg-info .front,
     &.card-rotate.bg-info .back{
-      background: linear-gradient(60deg, $cyan-400, $cyan-600);
+      background: linear-gradient(60deg, #005A9C, #116BAD);
     }
     .card-header-success .card-icon,
     .card-header-success .card-text,
@@ -240,7 +240,7 @@
     .card-header-info .card-icon,
     .card-header-info:not(.card-header-icon):not(.card-header-text),
     .card-header-info .card-text{
-        @include shadow-big-color($brand-info);
+        @include shadow-big-color(#005A9C);
     }
 
     .card-header-success .card-icon,
@@ -655,4 +655,8 @@
   .card .card-header a[aria-expanded="true"]{
     color: #e91e63;
   }
+}
+
+.text-strong-blue {
+  color: #005A9C!important;
 }
