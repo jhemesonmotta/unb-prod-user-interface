@@ -23,4 +23,5 @@ export class UserService {
   listar():Observable<Array<UsuarioLogado>> {
     return this.http.get(`${BACKEND_API_USUARIOS}usuario`) as Observable<Array<UsuarioLogado>>;
   }
+
 }

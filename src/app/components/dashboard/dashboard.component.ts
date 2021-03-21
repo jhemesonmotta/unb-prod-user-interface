@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { LeaderboardFidelidade } from 'app/model/leaderboardFidelidade';
+import { GamificacaoService } from 'app/services/gamificacao/gamificacao.service';
+import { SnackBarService } from 'app/services/snackbar/snack-bar.service';
+import { SpinnerService } from 'app/services/spinner.service';
 import * as Chartist from 'chartist';
 
 @Component({
@@ -8,7 +12,14 @@ import * as Chartist from 'chartist';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  leaderboardFidelidade: Array<LeaderboardFidelidade> = [];
+
+  constructor(
+    private gamificacaoService: GamificacaoService,
+    private spinner: SpinnerService,
+    private snackBarService: SnackBarService) { }
+
+
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;
@@ -42,6 +53,7 @@ export class DashboardComponent implements OnInit {
 
       seq = 0;
   };
+
   startAnimationForBarChart(chart){
       let seq2: any, delays2: any, durations2: any;
 
@@ -65,6 +77,7 @@ export class DashboardComponent implements OnInit {
 
       seq2 = 0;
   };
+
   ngOnInit() {
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
@@ -145,6 +158,28 @@ export class DashboardComponent implements OnInit {
 
       //start animation for the Emails Subscription Chart
       this.startAnimationForBarChart(websiteViewsChart);
+
+
+      this.carregarLeaderboardFidelidade();
+  }
+
+  carregarLeaderboardFidelidade() {
+    this.spinner.showSpinner();
+
+    this.gamificacaoService.leaderboardFidelidade().subscribe((data)=> {
+      this.leaderboardFidelidade = data;
+      
+      console.log('this.leaderboardFidelidade');
+      console.log(this.leaderboardFidelidade);
+      
+      this.spinner.stopSpinner();
+    }, (error) => {
+      console.log('Error: ');
+      console.log(error);
+
+      this.spinner.stopSpinner();
+      this.snackBarService.erro('Erro ao carregar os dados desta empresa!');
+    })
   }
 
 }

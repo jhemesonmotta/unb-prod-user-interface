@@ -22,6 +22,7 @@ import { FatorService } from './services/fatores/fator.service';
 import { ConfigService } from './services/config/config.service';
 import { MedicaoService } from './services/medicao/medicao.service';
 import { FatorMedidoService } from './services/medicao/fator.medido.service';
+import { GamificacaoService } from './services/gamificacao/gamificacao.service';
 
 @NgModule({
   imports: [
@@ -54,7 +55,8 @@ import { FatorMedidoService } from './services/medicao/fator.medido.service';
     FatorService,
     ConfigService,
     MedicaoService,
-    FatorMedidoService
+    FatorMedidoService,
+    GamificacaoService
   ],
   bootstrap: [AppComponent]
 })

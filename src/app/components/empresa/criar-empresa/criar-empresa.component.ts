@@ -22,6 +22,9 @@ export class CriarEmpresaComponent implements OnInit {
   usuarioLogado: UsuarioLogado;
   empresaSelecionada: Empresa;
 
+  textoCabecalho = 'Criar Empresa';
+  textoDescricao = 'Atenção! Ao adicionar uma empresa, automaticamente uma alocação do usuário responsável pela adição é criada.';
+
   cargos: string[] = [
     'Diretor',
     'Gerente',
@@ -139,6 +142,10 @@ export class CriarEmpresaComponent implements OnInit {
       this.empresaService.buscarPorId(id).subscribe(
         (data) => {
           this.empresaSelecionada = data;
+
+          this.textoCabecalho = 'Editar Empresa';
+          this.textoDescricao = '';
+
           this.form = this.fb.group({
             empresa: new FormControl(this.empresaSelecionada.nome, [Validators.required]),
           });
