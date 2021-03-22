@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LeaderboardFidelidade } from 'app/model/leaderboardFidelidade';
+import { UsuarioLogado } from 'app/model/usuarioLogado';
 import { GamificacaoService } from 'app/services/gamificacao/gamificacao.service';
 import { SnackBarService } from 'app/services/snackbar/snack-bar.service';
 import { SpinnerService } from 'app/services/spinner.service';
+import { UserService } from 'app/services/usuario/usuario.service';
 import * as Chartist from 'chartist';
 
 @Component({
@@ -13,9 +15,11 @@ import * as Chartist from 'chartist';
 export class DashboardComponent implements OnInit {
 
   leaderboardFidelidade: Array<LeaderboardFidelidade> = [];
+  usuarios: Array<UsuarioLogado> = [];
 
   constructor(
     private gamificacaoService: GamificacaoService,
+    private usuarioService: UserService,
     private spinner: SpinnerService,
     private snackBarService: SnackBarService) { }
 
@@ -160,6 +164,7 @@ export class DashboardComponent implements OnInit {
       this.startAnimationForBarChart(websiteViewsChart);
 
 
+      this.carregarUsuarios();
       this.carregarLeaderboardFidelidade();
   }
 
@@ -169,9 +174,12 @@ export class DashboardComponent implements OnInit {
     this.gamificacaoService.leaderboardFidelidade().subscribe((data)=> {
       this.leaderboardFidelidade = data;
       
-      console.log('this.leaderboardFidelidade');
-      console.log(this.leaderboardFidelidade);
+      this.leaderboardFidelidade.sort((a, b) => (a.quantidadeMedicoes < b.quantidadeMedicoes)
+          ? 1 : (a.quantidadeMedicoes === b.quantidadeMedicoes)
+          ? ((a.idUsuario > b.idUsuario) ? 1 : -1) : -1 );
       
+      this.leaderboardFidelidade = this.leaderboardFidelidade.slice(0,3);
+
       this.spinner.stopSpinner();
     }, (error) => {
       console.log('Error: ');
@@ -180,6 +188,27 @@ export class DashboardComponent implements OnInit {
       this.spinner.stopSpinner();
       this.snackBarService.erro('Erro ao carregar os dados desta empresa!');
     })
+  }
+
+  traduzirUsuario(id: number) {
+    return (id != null && id != 0 && this.usuarios.length > 0) ? this.usuarios.filter(usuario => usuario.id === id)[0].pessoa.nome : id;
+  }
+
+  private carregarUsuarios() {
+    this.spinner.showSpinner();
+
+    this.usuarioService.listar().subscribe(
+      (data) => {
+        this.usuarios = data;
+        this.spinner.stopSpinner();
+      }, (error) => {
+        console.log('Error: ');
+        console.log(error);
+
+        this.spinner.stopSpinner();
+        this.snackBarService.erro('Erro ao carregar os usuários.');
+      }
+    );
   }
 
 }

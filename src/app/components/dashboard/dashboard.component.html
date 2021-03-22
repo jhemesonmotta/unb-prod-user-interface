@@ -1,4 +1,43 @@
 <div class="main-content">
   <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-6">
+              <div class="card">
+                  <div class="card-header card-header-info">
+                      <h4 class="card-title">Leaderboard Fidelidade</h4>
+                  </div>
+                  <div class="card-body">
+                      <div class="table-responsive">
+                          <table class="table">
+                              <thead class="text-strong-blue">
+                                <th>
+                                  Pos.
+                                </th>
+                                  <th>
+                                      Usuário
+                                  </th>
+                                  <th>
+                                      Qt. Medições
+                                  </th>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let item of leaderboardFidelidade; let i = index">
+                                    <td>
+                                      {{i+1}}º
+                                    </td>
+                                      <td>
+                                          {{traduzirUsuario(item.idUsuario)}}
+                                      </td>
+                                      <td>
+                                          {{item.quantidadeMedicoes}}
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
   </div>
 </div>
