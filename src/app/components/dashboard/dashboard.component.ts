@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Empresa } from 'app/model/empresa';
 import { LeaderboardFidelidade } from 'app/model/leaderboardFidelidade';
 import { UsuarioLogado } from 'app/model/usuarioLogado';
+import { EmpresaService } from 'app/services/empresa/empresa.service';
 import { GamificacaoService } from 'app/services/gamificacao/gamificacao.service';
 import { SnackBarService } from 'app/services/snackbar/snack-bar.service';
 import { SpinnerService } from 'app/services/spinner.service';
@@ -15,12 +17,16 @@ import * as Chartist from 'chartist';
 export class DashboardComponent implements OnInit {
 
   leaderboardFidelidade: Array<LeaderboardFidelidade> = [];
+  leaderboardProdutividade: any;
+  empresas: Array<Empresa> = [];
+
   usuarios: Array<UsuarioLogado> = [];
 
   constructor(
     private gamificacaoService: GamificacaoService,
     private usuarioService: UserService,
     private spinner: SpinnerService,
+    private empresaService: EmpresaService,
     private snackBarService: SnackBarService) { }
 
 
@@ -163,9 +169,10 @@ export class DashboardComponent implements OnInit {
       //start animation for the Emails Subscription Chart
       this.startAnimationForBarChart(websiteViewsChart);
 
-
+      this.carregarEmpresas()
       this.carregarUsuarios();
       this.carregarLeaderboardFidelidade();
+      this.carregarLeaderboardProdutividade();
   }
 
   carregarLeaderboardFidelidade() {
@@ -190,8 +197,45 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  carregarLeaderboardProdutividade() {
+    this.spinner.showSpinner();
+
+    this.gamificacaoService.leaderboardEmpresas().subscribe((data)=> {
+      this.leaderboardProdutividade = data[data.length-1];
+
+      console.log('this.leaderboardProdutividade');
+      console.log(this.leaderboardProdutividade);
+
+      this.spinner.stopSpinner();
+    }, (error) => {
+      console.log('Error: ');
+      console.log(error);
+
+      this.spinner.stopSpinner();
+      this.snackBarService.erro('Erro ao carregar os dados desta empresa!');
+    })
+  }
+
+  organizarLeaderboardProdutividade() {
+    let listaAvaliacoes = this.leaderboardProdutividade.avaliacoes;
+
+    listaAvaliacoes.sort((a, b) => (a.mediaAvaliacao < b.mediaAvaliacao)
+        ? 1 : (a.mediaAvaliacao === b.mediaAvaliacao)
+        ? ((a.empresaId > b.empresaId) ? 1 : -1) : -1 );
+
+    listaAvaliacoes = listaAvaliacoes.slice(0,3);
+
+    return listaAvaliacoes;
+  }
+
   traduzirUsuario(id: number) {
-    return (id != null && id != 0 && this.usuarios.length > 0) ? this.usuarios.filter(usuario => usuario.id === id)[0].pessoa.nome : id;
+    let usuarioFiltrado = this.usuarios.filter(usuario => usuario.id === id);
+
+    return (id != null && id != 0 && usuarioFiltrado != null && usuarioFiltrado.length > 0) ? usuarioFiltrado[0].pessoa.nome : id;
+  }
+
+  traduzirEmpresa(id: number) {
+    return (id != null && id != 0 && this.empresas.length > 0) ? this.empresas.filter(empresa => empresa.id === id)[0].nome : '';
   }
 
   private carregarUsuarios() {
@@ -211,4 +255,21 @@ export class DashboardComponent implements OnInit {
     );
   }
 
+  private carregarEmpresas() {
+    this.spinner.showSpinner();
+
+    this.empresaService.listar().subscribe(
+      (data) => {
+        this.empresas = data;
+        this.spinner.stopSpinner();
+      }, (error) => {
+        console.log('Error: ');
+        console.log(error);
+
+        this.spinner.stopSpinner();
+        this.snackBarService.erro('Erro ao carregar as empresas.');
+      }
+    );
+  }
+  
 }

@@ -38,6 +38,43 @@
                   </div>
               </div>
           </div>
+          <div class="col-md-6">
+            <div class="card">
+                <div class="card-header card-header-info">
+                    <h4 class="card-title">Leaderboard de Produtividade - {{leaderboardProdutividade.dtCriacao | date: 'dd/MM/yyyy'}}</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-strong-blue">
+                              <th>
+                                Pos.
+                              </th>
+                                <th>
+                                    Empresa
+                                </th>
+                                <th>
+                                    Avaliação
+                                </th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of organizarLeaderboardProdutividade(); let i = index">
+                                  <td>
+                                    {{i+1}}º
+                                  </td>
+                                    <td>
+                                        {{traduzirEmpresa(item.empresaId)}}
+                                    </td>
+                                    <td>
+                                        {{item.mediaAvaliacao}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+          </div>
       </div>
   </div>
 </div>

@@ -13,4 +13,8 @@ export class GamificacaoService {
     return this.http.get(`${BACKEND_API_PRODUTIVIDADE}gamificacao/leaderboard/fidelidade`) as Observable<Array<LeaderboardFidelidade>>;
   }
 
+  leaderboardEmpresas():Observable<Array<any>> {
+    return this.http.get(`${BACKEND_API_PRODUTIVIDADE}gamificacao/leaderboard/empresas`) as Observable<Array<any>>;
+  }
+
 }
