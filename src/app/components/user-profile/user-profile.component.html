@@ -12,12 +12,14 @@
                           <div class="row">
                               <div class="col-md-6">
                                 <mat-form-field class="example-full-width">
+                                  <label>E-Mail</label>
                                     <input matInput value="{{usuarioLogado.email}}" disabled>
                                   </mat-form-field>
                               </div>
 
                               <div class="col-md-6">
                                 <mat-form-field class="example-full-width">
+                                  <label>Nome</label>
                                     <input matInput value="{{usuarioLogado.pessoa.nome}}" disabled>
                                   </mat-form-field>
                               </div>
@@ -26,12 +28,14 @@
                           <div class="row">
                             <div class="col-md-6">
                               <mat-form-field class="example-full-width">
+                                <label>Data de Nascimento</label>
                                   <input matInput value="{{usuarioLogado.pessoa.dataNascimento}}" disabled>
                                 </mat-form-field>
                             </div>
 
                             <div class="col-md-6">
                               <mat-form-field class="example-full-width">
+                                <label>Gênero</label>
                                   <input matInput value="{{usuarioLogado.pessoa.genero}}" disabled>
                                 </mat-form-field>
                             </div>
@@ -40,11 +44,13 @@
                           <div class="row">
                             <div class="col-md-6">
                               <mat-form-field class="example-full-width">
+                                <label>Perfil Github</label>
                                 <input matInput value="{{usuarioLogado.pessoa.perfilGithub}}" disabled>
                               </mat-form-field>
                             </div>
 
                             <div class="col-md-6">
+                              <br>
                                 <a href="{{usuarioLogado.pessoa.perfilGithub}}" class="btn btn-white btn-round"
                                   target="_blank">Ver GitHub</a>
                             </div>

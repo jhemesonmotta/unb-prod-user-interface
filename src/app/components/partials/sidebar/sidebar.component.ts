@@ -36,7 +36,7 @@ export class SidebarComponent implements OnInit {
       this.usuarioLogado = this.sharedService.getCurrentLogin();
 
       ROUTES.forEach(route => {
-        if (this.usuarioLogado.email === 'jhemesonmotta@gmail.com') {
+        if (this.usuarioLogado.email === 'jhemesonmotta@gmail.com' || this.usuarioLogado.email === 'jhemeson@gmail.com') {
           this.menuItems.push(route);
         } else {
           if (route.path === '/dashboard' || route.path === '/measurement-list' || route.path === '/user-profile') {

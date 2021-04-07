@@ -66,6 +66,7 @@ export class VerMedicaoComponent implements OnInit {
 
     return this.medicao?.dataFechamento === null && (
       this.usuarioLogado.email === 'jhemesonmotta@gmail.com' || 
+      this.usuarioLogado.email === 'jhemeson@gmail.com' || 
       alocacaoDesseUsuario.cargo === 'Gerente'
       || alocacaoDesseUsuario.cargo === 'Diretor');
   }
