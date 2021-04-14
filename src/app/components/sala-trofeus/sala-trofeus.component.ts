@@ -12,4 +12,6 @@ export class SalaTrofeusComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // TODO: buscar todos os troféus de todas as empresas em que o caba tem alocação ativa
+
 }
