@@ -42,7 +42,7 @@ import { GamificacaoService } from './services/gamificacao/gamificacao.service';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    LoginComponent,
+    LoginComponent
   ],
   providers: [
     AuthGuard,

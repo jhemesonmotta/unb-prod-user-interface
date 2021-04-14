@@ -19,6 +19,7 @@ import { VerMedicaoComponent } from 'app/components/medicao/ver-medicao/ver-medi
 import { CriarMedicaoComponent } from 'app/components/medicao/criar-medicao/criar-medicao.component';
 import { VerMedicaoPessoaComponent } from 'app/components/medicao/ver-medicao-pessoa/ver-medicao-pessoa.component';
 import { EditarMedicaoPessoaComponent } from 'app/components/medicao/editar-medicao-pessoa/editar-medicao-pessoa.component';
+import { SalaTrofeusComponent } from 'app/components/sala-trofeus/sala-trofeus.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',                                        component: DashboardComponent },
@@ -40,5 +41,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'measurement/:id',                                  component: VerMedicaoComponent },
     { path: 'measurement-create',                               component: CriarMedicaoComponent },
     { path: 'measurement/:id/person/:measurementPersonId',      component: VerMedicaoPessoaComponent },
-    { path: 'measurement/:id/person/:measurementPersonId/edit', component: EditarMedicaoPessoaComponent }
+    { path: 'measurement/:id/person/:measurementPersonId/edit', component: EditarMedicaoPessoaComponent },
+    { path: 'trophies-room',                                    component: SalaTrofeusComponent }
 ];

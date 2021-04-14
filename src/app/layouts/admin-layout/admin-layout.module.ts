@@ -31,6 +31,7 @@ import { VerMedicaoPessoaComponent } from 'app/components/medicao/ver-medicao-pe
 import { EditarMedicaoPessoaComponent } from 'app/components/medicao/editar-medicao-pessoa/editar-medicao-pessoa.component';
 import { DynamicFormComponent } from 'app/components/medicao/partials/dynamic-form/dynamic-form.component';
 import { DynamicFormQuestionComponent } from 'app/components/medicao/partials/dynamic-form-question/dynamic-form-question.component';
+import { SalaTrofeusComponent } from 'app/components/sala-trofeus/sala-trofeus.component';
 
 @NgModule({
   imports: [
@@ -68,7 +69,8 @@ import { DynamicFormQuestionComponent } from 'app/components/medicao/partials/dy
     VerMedicaoPessoaComponent,
     EditarMedicaoPessoaComponent,
     DynamicFormComponent,
-    DynamicFormQuestionComponent
+    DynamicFormQuestionComponent,
+    SalaTrofeusComponent
   ]
 })
 
