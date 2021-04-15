@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Alocacao } from 'app/model/alocacao';
+import { Empresa } from 'app/model/empresa';
 import { Trofeu } from 'app/model/Trofeu';
 import { UsuarioLogado } from 'app/model/usuarioLogado';
 import { AlocacaoService } from 'app/services/alocacao/alocacao.service';
+import { EmpresaService } from 'app/services/empresa/empresa.service';
 import { GamificacaoService } from 'app/services/gamificacao/gamificacao.service';
 import { SharedService } from 'app/services/shared.service';
 import { SnackBarService } from 'app/services/snackbar/snack-bar.service';
@@ -17,6 +19,7 @@ export class SalaTrofeusComponent implements OnInit {
 
   alocacoes: Array<Alocacao> = [];
   trofeus: Array<Trofeu> = [];
+  empresas: Array<Empresa> = [];
   usuarioLogado: UsuarioLogado;
 
   constructor(
@@ -24,18 +27,24 @@ export class SalaTrofeusComponent implements OnInit {
     private spinner: SpinnerService,
     private snackBarService: SnackBarService,
     private alocacaoService: AlocacaoService,
-    private gamificacaoService: GamificacaoService
+    private gamificacaoService: GamificacaoService,
+    private empresaService: EmpresaService
   ) { }
 
   ngOnInit(): void {
     if (this.sharedService.isLoggedIn()) {
       this.usuarioLogado = this.sharedService.getCurrentLogin();
       this.carregarAlocacoes();
+      this.carregarEmpresas();
     }
   }
 
   buscarTrofeusPorNivel(nivel) {
     return this.trofeus.filter(t => t.posicaoPodio === nivel);
+  }
+
+  traduzirEmpresa(id: number) {
+    return (id != null && id != 0 && this.empresas.length > 0) ? this.empresas.filter(empresa => empresa.id === id)[0].nome : '';
   }
 
   private carregarAlocacoes() {
@@ -68,6 +77,21 @@ export class SalaTrofeusComponent implements OnInit {
     });
   }
 
-  // TODO: buscar todos os troféus de todas as empresas em que o caba tem alocação ativa
+  private carregarEmpresas() {
+    this.spinner.showSpinner();
+
+    this.empresaService.listar().subscribe(
+      (data) => {
+        this.empresas = data;
+        this.spinner.stopSpinner();
+      }, (error) => {
+        console.log('Error: ');
+        console.log(error);
+
+        this.spinner.stopSpinner();
+        this.snackBarService.erro('Erro ao carregar as empresas.');
+      }
+    );
+  }
 
 }

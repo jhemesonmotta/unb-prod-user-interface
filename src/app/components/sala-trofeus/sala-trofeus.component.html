@@ -18,20 +18,28 @@
 									<h2><b>Troféus de Ouro</b></h2>
 									<br>
 
-									<div class="com-trofeu" *ngIf="buscarTrofeusPorNivel(1)">
+									<div class="com-trofeu" *ngIf="buscarTrofeusPorNivel(1)?.length > 0">
 										<div class="row">
 											<div class="col-md-4" *ngFor="let trofeu of buscarTrofeusPorNivel(1)">
 												<div class="image-container">
 													<img src="./assets/img/trofeus/ouro.png" alt="ouro" class="img-trofeu">
 												</div>
-												<p>{{trofeu.dtCriacao | date: 'dd/MM/yyyy'}} - {{trofeu.empresaId}} - {{trofeu.descricao}}</p>
+												<p>
+													{{trofeu.descricao}}
+													<br>
+													{{traduzirEmpresa(trofeu.empresaId)}}
+													<br>
+													{{trofeu.dtCriacao | date: 'dd/MM/yyyy'}}
+												</p>
 											</div>
 										</div>
 									</div>
 									
-									<div class="sem-trofeu" *ngIf="!buscarTrofeusPorNivel(1)">
+									<div class="sem-trofeu" *ngIf="buscarTrofeusPorNivel(1)?.length == 0">
 										<div class="image-container">
 											<img src="./assets/img/sad.png" alt="Sad" class="img-trofeu">
+											<br>
+											<br>
 											<br>
 										</div>
 	
@@ -46,20 +54,28 @@
 									<h2><b>Troféus de Prata</b></h2>
 									<br>
 
-									<div class="com-trofeu" *ngIf="buscarTrofeusPorNivel(2)">
+									<div class="com-trofeu" *ngIf="buscarTrofeusPorNivel(2)?.length > 0">
 										<div class="row">
 											<div class="col-md-4" *ngFor="let trofeu of buscarTrofeusPorNivel(2)">
 												<div class="image-container">
 													<img src="./assets/img/trofeus/prata.png" alt="prata" class="img-trofeu">
 												</div>
-												<p>{{trofeu.dtCriacao | date: 'dd/MM/yyyy'}} - {{trofeu.empresaId}} - {{trofeu.descricao}}</p>
+												<p>
+													{{trofeu.descricao}}
+													<br>
+													{{traduzirEmpresa(trofeu.empresaId)}}
+													<br>
+													{{trofeu.dtCriacao | date: 'dd/MM/yyyy'}}
+												</p>
 											</div>
 										</div>
 									</div>
 									
-									<div class="sem-trofeu" *ngIf="!buscarTrofeusPorNivel(2)">
+									<div class="sem-trofeu" *ngIf="buscarTrofeusPorNivel(2)?.length == 0">
 										<div class="image-container">
 											<img src="./assets/img/sad.png" alt="Sad" class="img-trofeu">
+											<br>
+											<br>
 											<br>
 										</div>
 	
@@ -74,20 +90,28 @@
 									<h2><b>Troféus de Bronze</b></h2>
 									<br>
 
-									<div class="com-trofeu" *ngIf="buscarTrofeusPorNivel(3)">
+									<div class="com-trofeu" *ngIf="buscarTrofeusPorNivel(3)?.length > 0">
 										<div class="row">
 											<div class="col-md-4" *ngFor="let trofeu of buscarTrofeusPorNivel(3)">
 												<div class="image-container">
 													<img src="./assets/img/trofeus/bronze.png" alt="bronze" class="img-trofeu">
 												</div>
-												<p>{{trofeu.dtCriacao | date: 'dd/MM/yyyy'}} - {{trofeu.empresaId}} - {{trofeu.descricao}}</p>
+												<p>
+													{{trofeu.descricao}}
+													<br>
+													{{traduzirEmpresa(trofeu.empresaId)}}
+													<br>
+													{{trofeu.dtCriacao | date: 'dd/MM/yyyy'}}
+												</p>
 											</div>
 										</div>
 									</div>
 									
-									<div class="sem-trofeu" *ngIf="!buscarTrofeusPorNivel(3)">
+									<div class="sem-trofeu" *ngIf="buscarTrofeusPorNivel(3)?.length == 0">
 										<div class="image-container">
 											<img src="./assets/img/sad.png" alt="Sad" class="img-trofeu">
+											<br>
+											<br>
 											<br>
 										</div>
 	
