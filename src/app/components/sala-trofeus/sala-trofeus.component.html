@@ -18,36 +18,24 @@
 									<h2><b>Troféus de Ouro</b></h2>
 									<br>
 
-									<div class="com-trofeu">
+									<div class="com-trofeu" *ngIf="buscarTrofeusPorNivel(1)">
 										<div class="row">
-											<div class="col-md-4">
+											<div class="col-md-4" *ngFor="let trofeu of buscarTrofeusPorNivel(1)">
 												<div class="image-container">
 													<img src="./assets/img/trofeus/ouro.png" alt="ouro" class="img-trofeu">
 												</div>
-												<p>14/04/2021 - Phoenix - Troféu XXX</p>
-											</div>
-											<div class="col-md-4">
-												<div class="image-container">
-													<img src="./assets/img/trofeus/ouro.png" alt="ouro" class="img-trofeu">
-												</div>
-												<p>14/04/2021 - Phoenix - Troféu XXX</p>
-											</div>
-											<div class="col-md-4">
-												<div class="image-container">
-													<img src="./assets/img/trofeus/ouro.png" alt="ouro" class="img-trofeu">
-												</div>
-												<p>14/04/2021 - Phoenix - Troféu XXX</p>
+												<p>{{trofeu.dtCriacao | date: 'dd/MM/yyyy'}} - {{trofeu.empresaId}} - {{trofeu.descricao}}</p>
 											</div>
 										</div>
 									</div>
 									
-									<div class="sem-trofeu">
+									<div class="sem-trofeu" *ngIf="!buscarTrofeusPorNivel(1)">
 										<div class="image-container">
 											<img src="./assets/img/sad.png" alt="Sad" class="img-trofeu">
 											<br>
 										</div>
 	
-										<p>Que pena, NOME_PESSOA, você e sua equipe ainda não ganharam nenhum troféu de ouro.</p>
+										<p>Que pena, {{usuarioLogado?.pessoa?.nome}}, você e sua equipe ainda não ganharam nenhum troféu de ouro.</p>
 									</div>
 
 									<br>
@@ -58,36 +46,24 @@
 									<h2><b>Troféus de Prata</b></h2>
 									<br>
 
-									<div class="com-trofeu">
+									<div class="com-trofeu" *ngIf="buscarTrofeusPorNivel(2)">
 										<div class="row">
-											<div class="col-md-4">
+											<div class="col-md-4" *ngFor="let trofeu of buscarTrofeusPorNivel(2)">
 												<div class="image-container">
 													<img src="./assets/img/trofeus/prata.png" alt="prata" class="img-trofeu">
 												</div>
-												<p>14/04/2021 - Phoenix - Troféu XXX</p>
-											</div>
-											<div class="col-md-4">
-												<div class="image-container">
-													<img src="./assets/img/trofeus/prata.png" alt="prata" class="img-trofeu">
-												</div>
-												<p>14/04/2021 - Phoenix - Troféu XXX</p>
-											</div>
-											<div class="col-md-4">
-												<div class="image-container">
-													<img src="./assets/img/trofeus/prata.png" alt="prata" class="img-trofeu">
-												</div>
-												<p>14/04/2021 - Phoenix - Troféu XXX</p>
+												<p>{{trofeu.dtCriacao | date: 'dd/MM/yyyy'}} - {{trofeu.empresaId}} - {{trofeu.descricao}}</p>
 											</div>
 										</div>
 									</div>
 									
-									<div class="sem-trofeu">
+									<div class="sem-trofeu" *ngIf="!buscarTrofeusPorNivel(2)">
 										<div class="image-container">
 											<img src="./assets/img/sad.png" alt="Sad" class="img-trofeu">
 											<br>
 										</div>
 	
-										<p>Que pena, NOME_PESSOA, você e sua equipe ainda não ganharam nenhum troféu de prata.</p>
+										<p>Que pena, {{usuarioLogado?.pessoa?.nome}}, você e sua equipe ainda não ganharam nenhum troféu de prata.</p>
 									</div>
 
 									<br>
@@ -98,36 +74,24 @@
 									<h2><b>Troféus de Bronze</b></h2>
 									<br>
 
-									<div class="com-trofeu">
+									<div class="com-trofeu" *ngIf="buscarTrofeusPorNivel(3)">
 										<div class="row">
-											<div class="col-md-4">
+											<div class="col-md-4" *ngFor="let trofeu of buscarTrofeusPorNivel(3)">
 												<div class="image-container">
 													<img src="./assets/img/trofeus/bronze.png" alt="bronze" class="img-trofeu">
 												</div>
-												<p>14/04/2021 - Phoenix - Troféu XXX</p>
-											</div>
-											<div class="col-md-4">
-												<div class="image-container">
-													<img src="./assets/img/trofeus/bronze.png" alt="bronze" class="img-trofeu">
-												</div>
-												<p>14/04/2021 - Phoenix - Troféu XXX</p>
-											</div>
-											<div class="col-md-4">
-												<div class="image-container">
-													<img src="./assets/img/trofeus/bronze.png" alt="bronze" class="img-trofeu">
-												</div>
-												<p>14/04/2021 - Phoenix - Troféu XXX</p>
+												<p>{{trofeu.dtCriacao | date: 'dd/MM/yyyy'}} - {{trofeu.empresaId}} - {{trofeu.descricao}}</p>
 											</div>
 										</div>
 									</div>
 									
-									<div class="sem-trofeu">
+									<div class="sem-trofeu" *ngIf="!buscarTrofeusPorNivel(3)">
 										<div class="image-container">
 											<img src="./assets/img/sad.png" alt="Sad" class="img-trofeu">
 											<br>
 										</div>
 	
-										<p>Que pena, NOME_PESSOA, você e sua equipe ainda não ganharam nenhum troféu de bronze.</p>
+										<p>Que pena, {{usuarioLogado?.pessoa?.nome}}, você e sua equipe ainda não ganharam nenhum troféu de bronze.</p>
 									</div>
 
 									<br>
