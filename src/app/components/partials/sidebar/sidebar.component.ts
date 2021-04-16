@@ -40,7 +40,7 @@ export class SidebarComponent implements OnInit {
         if (this.usuarioLogado.email === 'jhemesonmotta@gmail.com' || this.usuarioLogado.email === 'jhemeson@gmail.com') {
           this.menuItems.push(route);
         } else {
-          if (route.path === '/dashboard' || route.path === '/measurement-list' || route.path === '/user-profile') {
+          if (route.path === '/dashboard' || route.path === '/measurement-list' || route.path === '/user-profile' || route.path === '/trophies-room') {
             this.menuItems.push(route);
           }
         }
