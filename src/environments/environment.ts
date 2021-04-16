@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
   config: {
-    BACKEND_URL_USUARIOS: "http://localhost:8080/api/v1/",
-    BACKEND_URL_PRODUTIVIDADE: "http://localhost:8081/api/v1/"
+    BACKEND_URL_USUARIOS: "https://unb-ms-usuarios.herokuapp.com/api/v1/",
+    BACKEND_URL_PRODUTIVIDADE: "https://unb-ms-produtividade.herokuapp.com/api/v1/"
   }
 };
