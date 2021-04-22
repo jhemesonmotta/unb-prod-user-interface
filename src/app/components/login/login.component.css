@@ -259,3 +259,8 @@ input[type=text]:placeholder {
 * {
   box-sizing: border-box;
 }
+
+
+.titulo {
+  font-size: 35px!important;
+}
