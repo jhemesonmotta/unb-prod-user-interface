@@ -12,14 +12,14 @@
                                 <div class="col-md-6">
                                   <mat-form-field class="example-full-width">
                                     <label>Nome da Empresa</label>
-                                      <input matInput value="{{empresaSelecionada.nome}}" disabled>
+                                      <input matInput value="{{empresaSelecionada?.nome}}" disabled>
                                     </mat-form-field>
                                 </div>
   
                                 <div class="col-md-6">
                                   <mat-form-field class="example-full-width">
                                     <label>Data de Cadastro</label>
-                                      <input matInput value="{{empresaSelecionada.dataCadastro}}" disabled>
+                                      <input matInput value="{{empresaSelecionada?.dataCadastro}}" disabled>
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -33,7 +33,7 @@
                 <div class="card">
                   <div class="card-header card-header-info">
                       <h4 class="card-title ">Alocações</h4>
-                      <p class="card-category"> Aqui está uma lista de todos os usuários alocados a esta empresa.</p>
+                      <p class="card-category"> Lista de todos os usuários alocados a empresa {{empresaSelecionada?.nome}}.</p>
                   </div>
                   <div class="card-body">
                       <div class="table-responsive">

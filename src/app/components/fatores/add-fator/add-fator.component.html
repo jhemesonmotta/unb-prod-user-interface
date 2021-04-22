@@ -4,7 +4,7 @@
             <div class="perfil-container">
                 <div class="card">
                     <div class="card-header card-header-info">
-                        <h4 class="card-title">Criar Fator</h4>
+                        <h4 class="card-title">Adicionar Fator</h4>
                     </div>
                     <div class="card-body">
                         <form [formGroup]="form">
@@ -32,7 +32,7 @@
   
                               <div class="col-md-6">
                                 <mat-form-field class="example-full-width">
-                                    <mat-label>Escolha a Tipo De Usuário Preenchedor</mat-label>
+                                    <mat-label>Escolha o Tipo de Usuário Preenchedor</mat-label>
                                     <mat-select formControlName="tipoDeUsuarioPreenchendo" required>
                                         <mat-option *ngFor="let responsabilidade of RESPONSABILIDADES" [value]="responsabilidade">
                                             {{responsabilidade}}

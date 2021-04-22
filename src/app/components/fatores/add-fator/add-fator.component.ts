@@ -67,7 +67,7 @@ export class AddFatorComponent implements OnInit {
             console.log(error);
   
             this.spinner.stopSpinner();
-            this.snackBarService.erro('Erro ao criar Fator.');
+            this.snackBarService.erro('Erro ao adicionar Fator.');
           }
         );
       }

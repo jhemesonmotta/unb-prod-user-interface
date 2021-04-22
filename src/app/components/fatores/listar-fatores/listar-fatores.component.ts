@@ -33,7 +33,7 @@ export class ListarFatoresComponent implements OnInit {
       console.log(error);
 
       this.spinner.stopSpinner();
-      this.snackBarService.erro('Erro ao criar Fator.');
+      this.snackBarService.erro('Erro ao editar Fator.');
     });
   }
 
