@@ -8,7 +8,7 @@
     &.bs-popover-top .arrow:before,
     &.bs-popover-left .arrow:before,
     &.bs-popover-right .arrow:before,
-    &.bs-popover-bottom .arrow:before,{
+    &.bs-popover-bottom .arrow:before {
         border-top-color: transparent;
         border-left-color: transparent;
         border-right-color: transparent;
@@ -18,7 +18,6 @@
     .popover-header{
         color: $default-color-opacity;
         font-size: $font-size-base;
-        text-transform: capitalize;
         font-weight: $font-weight-semi;
         margin: 0;
         margin-top: 5px;
